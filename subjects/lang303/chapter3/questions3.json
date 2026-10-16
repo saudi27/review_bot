@@ -1,0 +1,520 @@
+[
+  {
+    "question": "ما وظيفة Output Parsers؟",
+    "options": [
+      "إرسال الأسئلة إلى النموذج",
+      "تبديل النموذج بسطر واحد",
+      "تحويل ردود النموذج اللغوي إلى بيانات منظمة يمكن استخدامها في البرامج",
+      "حفظ تاريخ المحادثة"
+    ],
+    "answer": 2,
+    "explanation": "Output Parsers تحوّل ردود النموذج إلى بيانات منظمة يمكن استخدامها في البرامج (سلايد 6).",
+    "page": 6
+  },
+  {
+    "question": "ما مشكلة الحصول على رد النموذج بدون Output Parser؟",
+    "options": [
+      "نحصل على AIMessage ونص طويل غير منظم يصعب استخدامه في التطبيق",
+      "نحصل على رقم فقط بدون نص",
+      "نحصل على قاموس منظم جاهز للاستخدام",
+      "النموذج يرفض الإجابة"
+    ],
+    "answer": 0,
+    "explanation": "بدون Parser نحصل على كائن AIMessage ونص طويل غير منظم، ومع Parser نحصل على قاموس منظم (سلايد 7).",
+    "page": 7
+  },
+  {
+    "question": "ما مخرج StrOutputParser؟",
+    "options": [
+      "قاموس (dict)",
+      "قائمة أرقام",
+      "نص عادي (str)",
+      "كائن Python Object"
+    ],
+    "answer": 2,
+    "explanation": "StrOutputParser مخرجه نص عادي str (سلايد 8).",
+    "page": 8
+  },
+  {
+    "question": "ما مخرج JsonOutputParser؟",
+    "options": [
+      "رسالة AIMessage",
+      "قاموس (dict)",
+      "نص عادي (str)",
+      "كائن Python Object"
+    ],
+    "answer": 1,
+    "explanation": "JsonOutputParser مخرجه قاموس dict (سلايد 8).",
+    "page": 8
+  },
+  {
+    "question": "أي محلل مناسب لتطبيقات المحادثة والمترجم (chatbot)؟",
+    "options": [
+      "StrOutputParser",
+      "with_structured_output",
+      "PydanticOutputParser",
+      "JsonOutputParser"
+    ],
+    "answer": 0,
+    "explanation": "StrOutputParser يُستخدم للمحادثات العامة والمترجم والـ chatbot (سلايد 8).",
+    "page": 8
+  },
+  {
+    "question": "أي محلل يُستخدم لاستخراج حقول محددة من نص؟",
+    "options": [
+      "StrOutputParser",
+      "PydanticOutputParser",
+      "CommaSeparatedList",
+      "JsonOutputParser"
+    ],
+    "answer": 3,
+    "explanation": "JsonOutputParser يُستخدم لاستخراج حقول محددة من نص (سلايد 8).",
+    "page": 8
+  },
+  {
+    "question": "أي محلل يُستخدم للبيانات المعقدة مع تحقق تلقائي؟",
+    "options": [
+      "JsonOutputParser",
+      "PydanticOutputParser",
+      "StrOutputParser",
+      "CommaSeparatedList"
+    ],
+    "answer": 1,
+    "explanation": "PydanticOutputParser للبيانات المعقدة مع تحقق تلقائي (سلايد 8).",
+    "page": 8
+  },
+  {
+    "question": "أي طريقة هي الأحدث والأفضل لاستخراج بيانات منظمة؟",
+    "options": [
+      "JsonOutputParser",
+      "with_structured_output()",
+      "StrOutputParser",
+      "PydanticOutputParser"
+    ],
+    "answer": 1,
+    "explanation": "with_structured_output() هي الطريقة الأحدث والأفضل (سلايد 8 و21).",
+    "page": 8
+  },
+  {
+    "question": "في الكود التالي، ما نوع response وماذا نكتب للوصول إلى النص؟",
+    "code": "response = llm.invoke([HumanMessage(content=\"ما عاصمة السعودية؟\")])\nprint(type(response))    # <class 'AIMessage'>\nprint(response.content)  # \"الرياض\"",
+    "options": [
+      "dict، ونكتب response['content']",
+      "AIMessage، ونستخدمه مباشرة كنص",
+      "AIMessage، ونكتب response.content",
+      "str، ونستخدمه مباشرة"
+    ],
+    "answer": 2,
+    "explanation": "بدون Parser الرد من نوع AIMessage، ولازم نكتب .content للوصول إلى النص (سلايد 9).",
+    "page": 9
+  },
+  {
+    "question": "ما نوع result في الكود التالي إذا كان parser = StrOutputParser()؟",
+    "code": "chain = template | llm | parser\nresult = chain.invoke({\"city\": \"الرياض\"})\nprint(type(result))",
+    "options": [
+      "قائمة",
+      "str (نص عادي)",
+      "dict",
+      "AIMessage"
+    ],
+    "answer": 1,
+    "explanation": "مع StrOutputParser تكون النتيجة نصاً عادياً str مباشرة (سلايد 10).",
+    "page": 10
+  },
+  {
+    "question": "ما ميزة StrOutputParser حسب المحاضرة؟",
+    "options": [
+      "الأبسط والأسرع ولا تكلفة إضافية",
+      "يضمن صحة البيانات ويرفض الخاطئة",
+      "يربط الهيكل بالنموذج مباشرة",
+      "يحوّل الرد إلى قاموس"
+    ],
+    "answer": 0,
+    "explanation": "StrOutputParser الأبسط والأسرع ولا يضيف تكلفة (سلايد 9 و10).",
+    "page": 10
+  },
+  {
+    "question": "ماذا نخبر النموذج صراحةً في System Message عند استخدام JsonOutputParser؟",
+    "options": [
+      "أن يجيب بـ JSON فقط",
+      "أن يجيب بنص طويل",
+      "أن يضيف شرحاً قبل الـ JSON",
+      "أن يكتب الرد بالإنجليزية فقط"
+    ],
+    "answer": 0,
+    "explanation": "المفتاح: أخبر النموذج صراحةً في System Message أن يجيب بـ JSON فقط (سلايد 11 و12).",
+    "page": 11
+  },
+  {
+    "question": "أي قيمة temperature نستخدمها مع JsonOutputParser للحصول على دقة؟",
+    "options": [
+      "temperature=0.7",
+      "لا علاقة لـ temperature بالدقة",
+      "temperature=1",
+      "temperature=0"
+    ],
+    "answer": 3,
+    "explanation": "نستخدم temperature=0 للدقة (سلايد 11).",
+    "page": 11
+  },
+  {
+    "question": "ما نوع result وكيف نصل إلى قيمة name في الكود التالي؟",
+    "code": "result = chain.invoke({\"player_name\": \"كريستيانو رونالدو\"})\nprint(type(result))     # <class 'dict'>\nprint(result[\"name\"])",
+    "options": [
+      "dict، ونصل لها بـ result['name']",
+      "str، ونصل لها بـ result.name",
+      "AIMessage، ونصل لها بـ result.content",
+      "قائمة، ونصل لها بـ result[0]"
+    ],
+    "answer": 0,
+    "explanation": "مع JsonOutputParser تكون النتيجة قاموساً dict، ونصل للقيم بالمفاتيح (سلايد 12).",
+    "page": 12
+  },
+  {
+    "question": "ما الخطوة الأولى في مثال RecipeSchema لاستخدام JsonOutputParser؟",
+    "options": [
+      "استخدام البيانات",
+      "بناء القالب",
+      "تحديد شكل البيانات المطلوبة (تعريف الكلاس)",
+      "إنشاء المحلل مع التعريف"
+    ],
+    "answer": 2,
+    "explanation": "الخطوات: 1 حدد شكل البيانات، 2 أنشئ المحلل، 3 ابنِ القالب، 4 الاستخدام، 5 استخدام البيانات (سلايد 13 و14).",
+    "page": 13
+  },
+  {
+    "question": "ما وظيفة Field(description=...) في الكود التالي؟",
+    "code": "class RecipeSchema(BaseModel):\n    recipe_name: str = Field(description=\"اسم الوصفة\")\n    prep_time_min: int = Field(description=\"وقت التحضير بالدقائق\")",
+    "options": [
+      "تحدد اسم النموذج المستخدم",
+      "تساعد النموذج على فهم المطلوب في كل حقل",
+      "تحمّل مفاتيح API",
+      "تحذف الحقل من النتيجة"
+    ],
+    "answer": 1,
+    "explanation": "Field(description=...) يساعد النموذج على فهم المطلوب في كل حقل (سلايد 13 و32).",
+    "page": 13
+  },
+  {
+    "question": "ما وظيفة parser.get_format_instructions() في الكود التالي؟",
+    "code": "result = chain.invoke({\n    \"dish\": \"كبسة دجاج سعودية\",\n    \"format_instructions\": parser.get_format_instructions(),\n})",
+    "options": [
+      "تحمّل مفتاح API من ملف .env",
+      "تحوّل النتيجة إلى نص عادي",
+      "تحفظ تاريخ المحادثة",
+      "تعطي النموذج تعليمات بالشكل المطلوب للبيانات"
+    ],
+    "answer": 3,
+    "explanation": "التعليمات تُمرر للقالب في {format_instructions} ليعرف النموذج الشكل المطلوب (سلايد 14).",
+    "page": 14
+  },
+  {
+    "question": "ماذا يفعل PydanticOutputParser تلقائياً مع البيانات الخاطئة؟",
+    "options": [
+      "يحوّلها إلى نص عادي",
+      "يقبلها دائماً دون فحص",
+      "يحدد النوع ويرفض البيانات الخاطئة",
+      "يحذف الحقول الخاطئة بصمت"
+    ],
+    "answer": 2,
+    "explanation": "Pydantic يحدد النوع ويرفض البيانات الخاطئة تلقائياً (سلايد 15).",
+    "page": 15
+  },
+  {
+    "question": "في مثال عقد الإيجار، ماذا يحدث لو كُتب الإيجار 'ألف ريال' بدلاً من 1000؟",
+    "options": [
+      "Pydantic يرفض العقد",
+      "يقبله ويحوله إلى 1000",
+      "يتجاهل حقل الإيجار",
+      "يحوله إلى نص ويكمل"
+    ],
+    "answer": 0,
+    "explanation": "إذا كُتب الإيجار نصاً بدل رقم فإن Pydantic يرفض العقد (سلايد 15).",
+    "page": 15
+  },
+  {
+    "question": "كيف نصل إلى اسم الهاتف من النتيجة في الكود التالي؟",
+    "code": "review = chain.invoke({\n    \"phone\": \"Samsung Galaxy S25 Ultra\",\n    \"format_instructions\": parser.get_format_instructions(),\n})\nprint(review.phone_name)",
+    "options": [
+      "review.parse('phone_name')",
+      "review.content",
+      "review['phone_name'] (مثل القاموس)",
+      "review.phone_name (مثل أي كائن Python)"
+    ],
+    "answer": 3,
+    "explanation": "مع PydanticOutputParser نصل للبيانات مثل أي كائن Python (سلايد 16).",
+    "page": 16
+  },
+  {
+    "question": "ما معنى ge وle في Pydantic؟",
+    "options": [
+      "ge للنص، وle للأرقام",
+      "ge أكبر أو يساوي، وle أصغر أو يساوي",
+      "ge أصغر أو يساوي، وle أكبر أو يساوي",
+      "ge يساوي تماماً، وle لا يساوي"
+    ],
+    "answer": 1,
+    "explanation": "ge تعني أكبر أو يساوي، وle تعني أصغر أو يساوي (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ماذا تعني ge=1 و le=5 في حقل year في الكود التالي؟",
+    "code": "year: int = Field(description=\"السنة الدراسية 1 إلى 5\",\n                  ge=1, le=5)",
+    "options": [
+      "السنة لازم تكون أكبر من 5",
+      "السنة نص وليست رقماً",
+      "السنة لازم تكون بين 1 و5",
+      "السنة لازم تكون 1 أو 5 فقط"
+    ],
+    "answer": 2,
+    "explanation": "ge=1 و le=5 تعني أن السنة بين 1 و5 فقط (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ماذا يعني min_length=1 و max_length=8 في الحقل التالي؟",
+    "code": "courses: List[str] = Field(description=\"المواد المسجلة هذا الفصل\",\n                           min_length=1,\n                           max_length=8)",
+    "options": [
+      "كل مادة اسمها من حرف إلى 8 أحرف",
+      "مادة واحدة فقط",
+      "8 مواد على الأقل",
+      "على الأقل مادة واحدة ولا أكثر من 8 مواد"
+    ],
+    "answer": 3,
+    "explanation": "min_length=1 يعني مادة واحدة على الأقل، وmax_length=8 يعني لا أكثر من 8 مواد (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ماذا تفعل القاعدة المخصصة في الكود التالي؟",
+    "code": "@field_validator(\"email\")\n@classmethod\ndef email_must_be_university(cls, v):\n    if \"@seu.edu.sa\" not in v:\n        raise ValueError(\"البريد يجب أن ينتهي بـ seu.edu.sa\")\n    return v",
+    "options": [
+      "تحذف حقل البريد",
+      "ترفض أي بريد لا يحتوي على @seu.edu.sa",
+      "تحوّل البريد إلى حروف كبيرة",
+      "تقبل أي بريد إلكتروني"
+    ],
+    "answer": 1,
+    "explanation": "القاعدة تتأكد أن البريد جامعي، وترفع ValueError إذا لم يحتوِ على @seu.edu.sa (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ماذا يحدث في الكود التالي عند إدخال بيانات خاطئة؟",
+    "code": "try:\n    bad_student = StudentProfile(\n        name=\"A\",\n        gpa=5.0,\n        year=6,\n        # باقي الحقول\n    )\nexcept Exception as e:\n    print(f\"رُفضت البيانات: {e}\")",
+    "options": [
+      "يتوقف البرنامج بدون رسالة",
+      "تُصحح البيانات تلقائياً",
+      "تُقبل البيانات كما هي",
+      "تُرفض البيانات ويُطبع رسالة واضحة عن الأخطاء"
+    ],
+    "answer": 3,
+    "explanation": "Pydantic يرفض البيانات الخاطئة ويعطيك رسالة واضحة عن كل خطأ (سلايد 18).",
+    "page": 18
+  },
+  {
+    "question": "ما الميزة الأقوى لـ PydanticOutputParser؟",
+    "options": [
+      "الأسرع والأخف",
+      "لا يحتاج parser في السلسلة",
+      "الرفض التلقائي للبيانات غير المنطقية",
+      "يحوّل الرد إلى نص عادي"
+    ],
+    "answer": 2,
+    "explanation": "الميزة الأقوى: الرفض التلقائي للبيانات غير المنطقية بدون كتابة if/else لكل حقل (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ما فكرة with_structured_output()؟",
+    "options": [
+      "نحوّل الرد إلى نص عادي",
+      "نخبر النموذج مباشرةً بالهيكل المطلوب بدلاً من إضافة parser للسلسلة",
+      "نضيف parser ثانياً في آخر السلسلة",
+      "نحفظ تاريخ المحادثة"
+    ],
+    "answer": 1,
+    "explanation": "نخبر النموذج مباشرةً بالهيكل المطلوب بدلاً من إضافة parser: أقل كود ونفس النتيجة (سلايد 19).",
+    "page": 19
+  },
+  {
+    "question": "ما الذي يميز بناء السلسلة في الكود التالي عن الطرق السابقة؟",
+    "code": "llm_base = ChatOpenAI(model=\"gpt-4o-mini\", temperature=0)\nllm_structured = llm_base.with_structured_output(RestaurantReview)\nchain = template | llm_structured",
+    "options": [
+      "تستخدم StrOutputParser",
+      "لا يوجد نموذج لغوي",
+      "لا يوجد parser في السلسلة",
+      "لا يوجد قالب أوامر"
+    ],
+    "answer": 2,
+    "explanation": "السلسلة بدون parser لأن الهيكل مرتبط بالنموذج مباشرة (سلايد 19 و20).",
+    "page": 19
+  },
+  {
+    "question": "كيف نصل إلى بيانات النتيجة في الكود التالي؟",
+    "code": "result = chain.invoke({\"review_text\": review_text})\nprint(result.restaurant_name)\nprint(result.overall_rating)",
+    "options": [
+      "بـ result.parse()",
+      "بنقطة مثل خصائص الكائن (result.restaurant_name)",
+      "بـ result.content فقط",
+      "بأقواس مثل القاموس (result['restaurant_name'])"
+    ],
+    "answer": 1,
+    "explanation": "النتيجة كائن Python نصل لخصائصه بالنقطة (سلايد 20).",
+    "page": 20
+  },
+  {
+    "question": "ما القاعدة الذهبية لاختيار المحلل حسب المحاضرة؟",
+    "options": [
+      "استخدم Pydantic دائماً حتى للمحادثات",
+      "هل تحتاج بيانات منظمة؟ لا ← Str، نعم ← JSON أو Pydantic",
+      "استخدم Str دائماً حتى للبيانات المنظمة",
+      "استخدم JSON دائماً"
+    ],
+    "answer": 1,
+    "explanation": "القاعدة الذهبية: هل تحتاج بيانات منظمة؟ لا ← Str | نعم ← JSON أو Pydantic (سلايد 21).",
+    "page": 21
+  },
+  {
+    "question": "أي محلل مناسب للقوائم البسيطة مثل المهارات والمواضيع؟",
+    "options": [
+      "PydanticOutputParser",
+      "StrOutputParser",
+      "CommaSeparatedList",
+      "JsonOutputParser"
+    ],
+    "answer": 2,
+    "explanation": "CommaSeparatedList سريع للقوائم البسيطة مثل المهارات والمواضيع (سلايد 21).",
+    "page": 21
+  },
+  {
+    "question": "ظهر الخطأ OutputParserException: Invalid JSON. ما السبب؟",
+    "options": [
+      "مفتاح API مفقود",
+      "القالب لا يحتوي على متغيرات",
+      "النموذج أضاف نصاً أو علامات ماركداون خارج الـ JSON",
+      "المكتبة غير مثبتة"
+    ],
+    "answer": 2,
+    "explanation": "السبب أن النموذج أضاف نصاً أو علامات ماركداون خارج الـ JSON (سلايد 30).",
+    "page": 30
+  },
+  {
+    "question": "كيف نحل خطأ Invalid JSON؟",
+    "options": [
+      "نضيف مزيداً من الأمثلة بدون تغيير الـ System Message",
+      "نحذف القالب",
+      "نرفع قيمة temperature إلى 1",
+      "نكتب System Message واضحاً وصارماً: أجب بـ JSON فقط، مع temperature=0"
+    ],
+    "answer": 3,
+    "explanation": "الحل: System Message واضح وصارم مثل أجب بـ JSON فقط، واستخدم دائماً temperature=0 (سلايد 30).",
+    "page": 30
+  },
+  {
+    "question": "ظهر ValidationError لأن حقل int جاء نصاً مثل 'عشر سنوات' بدل 5. كيف نمنع ذلك؟",
+    "options": [
+      "نضيف وصفاً دقيقاً للحقل مثل: سنوات الخبرة كرقم صحيح فقط، مثال: 5",
+      "نغيّر نوع الحقل إلى List",
+      "نرفع قيمة temperature",
+      "نحذف الحقل من الكلاس"
+    ],
+    "answer": 0,
+    "explanation": "الوصف الدقيق للحقل يمنع النموذج من كتابة النص بدل الرقم (سلايد 30).",
+    "page": 30
+  },
+  {
+    "question": "ماذا تعني Optional[str] وNone في الحقل التالي؟",
+    "code": "phone: Optional[str] = Field(\n    None,\n    description=\"رقم الهاتف إن وُجد في النص\"\n)",
+    "options": [
+      "الحقل يُحذف من الكلاس",
+      "الحقل رقم وليس نصاً",
+      "الحقل غير إلزامي، وقيمته None إذا لم يوجد في النص",
+      "الحقل إلزامي ويجب أن يوجد دائماً"
+    ],
+    "answer": 2,
+    "explanation": "Optional للحقول غير الإلزامية، والقيمة الافتراضية None إذا لم توجد المعلومة (سلايد 30).",
+    "page": 30
+  },
+  {
+    "question": "الكود يعمل مرة ويفشل مرة مع Output Parsers. ما السبب والحل؟",
+    "options": [
+      "ملف .env غير موجود، والحل إنشاؤه",
+      "temperature عالية تجعل النموذج غير متسق، والحل temperature=0",
+      "مفتاح API خاطئ، والحل تغيير المفتاح",
+      "المكتبة غير مثبتة، والحل pip install"
+    ],
+    "answer": 1,
+    "explanation": "السبب أن temperature عالية، والحل استخدام temperature=0 دائماً مع Output Parsers (سلايد 30).",
+    "page": 30
+  },
+  {
+    "question": "أي مما يلي من القواعد الذهبية للـ Output Parsers؟",
+    "options": [
+      "لا تستخدم Optional أبداً",
+      "استخدم temperature=1 دائماً",
+      "استخدم temperature=0 دائماً مع الـ Parsers",
+      "لا تكتب Field(description) أبداً"
+    ],
+    "answer": 2,
+    "explanation": "من القواعد الذهبية: استخدم temperature=0 دائماً مع الـ Parsers (سلايد 32).",
+    "page": 32
+  },
+  {
+    "question": "إذا كان total_time = 130، فكم تكون قيمتا hours وmins في الكود التالي؟",
+    "code": "total_min = result['total_time']\nhours = total_min // 60\nmins = total_min % 60",
+    "options": [
+      "hours = 3 و mins = 10",
+      "hours = 13 و mins = 0",
+      "hours = 2 و mins = 10",
+      "hours = 1 و mins = 30"
+    ],
+    "answer": 2,
+    "explanation": "130 // 60 = 2 (عدد الساعات)، و130 % 60 = 10 (الدقائق المتبقية) (سلايد 24).",
+    "page": 24
+  },
+  {
+    "question": "أي محلل استخدمه مختبر 3.1 (قارئ وصفات الطعام)؟",
+    "options": [
+      "JsonOutputParser",
+      "StrOutputParser",
+      "with_structured_output",
+      "PydanticOutputParser"
+    ],
+    "answer": 0,
+    "explanation": "مختبر 3.1 قارئ وصفات الطعام استخدم JsonOutputParser (سلايد 22).",
+    "page": 22
+  },
+  {
+    "question": "أي طريقة استخدمها مختبر 3.2 (محلل تقييمات المطاعم)؟",
+    "options": [
+      "with_structured_output()",
+      "PydanticOutputParser",
+      "JsonOutputParser",
+      "StrOutputParser"
+    ],
+    "answer": 0,
+    "explanation": "مختبر 3.2 محلل تقييمات المطاعم استخدم with_structured_output (سلايد 22 و26).",
+    "page": 22
+  },
+  {
+    "question": "في تطبيق CV Analyzer، أي حقل نوعه رقم صحيح من 0 إلى 100؟",
+    "options": [
+      "years_exp",
+      "career_level",
+      "top_skills",
+      "fit_score"
+    ],
+    "answer": 3,
+    "explanation": "الحقل fit_score هو رقم صحيح من 0 إلى 100 (سلايد 27).",
+    "page": 27
+  },
+  {
+    "question": "كيف تُبنى سلسلة CV Analyzer في التطبيق العملي؟",
+    "options": [
+      "ChatOpenAI(temperature=0) مع ChatPromptTemplate وllm.with_structured_output(CVProfile)",
+      "PydanticOutputParser مع temperature=1",
+      "StrOutputParser فقط بدون تعريف هيكل",
+      "JsonOutputParser بدون تعريف أي حقول"
+    ],
+    "answer": 0,
+    "explanation": "المطلوب: ChatOpenAI(temperature=0) وChatPromptTemplate وllm.with_structured_output(CVProfile) (سلايد 27).",
+    "page": 27
+  }
+]

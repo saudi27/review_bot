@@ -1,0 +1,508 @@
+[
+  {
+    "question": "ما أنواع النماذج الرئيسية الثلاثة في LangChain؟",
+    "options": [
+      "LLM وChatModel وLangGraph",
+      "ChatModel وEmbeddings وLangSmith",
+      "LLM وChatModel وEmbeddings",
+      "LLM وAgents وMemory"
+    ],
+    "answer": 2,
+    "explanation": "ثلاثة أنواع رئيسية: LLM وChatModel وEmbeddings، ولكل منها حالة استخدام مختلفة (سلايد 7).",
+    "page": 7
+  },
+  {
+    "question": "أي نوع من النماذج يأخذ قائمة رسائل ويعيد رسالة، وهو الأحدث والأكثر استخداماً؟",
+    "options": [
+      "LLM",
+      "Output Parser",
+      "ChatModel",
+      "Embeddings"
+    ],
+    "answer": 2,
+    "explanation": "ChatModel يأخذ قائمة رسائل ويعيد رسالة وهو مناسب للمحادثات التفاعلية (سلايد 7).",
+    "page": 7
+  },
+  {
+    "question": "ماذا تفعل نماذج Embeddings؟",
+    "options": [
+      "تحوّل النص إلى متجه رقمي (Vector) وتُستخدم للبحث الدلالي وتطبيقات RAG",
+      "تأخذ قائمة رسائل وتعيد رسالة",
+      "تأخذ نصاً وتعيد نصاً",
+      "تحوّل مخرجات النموذج إلى نص نظيف"
+    ],
+    "answer": 0,
+    "explanation": "Embeddings تحوّل النص إلى متجه رقمي وتُستخدم للبحث الدلالي وتطبيقات RAG (سلايد 7).",
+    "page": 7
+  },
+  {
+    "question": "ما اسم الصنف المستخدم في LangChain للاتصال بنماذج OpenAI مثل gpt-4o-mini؟",
+    "options": [
+      "ChatOllama",
+      "ChatAnthropic",
+      "ChatMistralAI",
+      "ChatOpenAI"
+    ],
+    "answer": 3,
+    "explanation": "ChatOpenAI للاتصال بنماذج OpenAI مثل gpt-4o-mini (سلايد 8).",
+    "page": 8
+  },
+  {
+    "question": "أي صنف يشغّل نماذج مثل llama3.2 محلياً بنسبة 100% وبخصوصية كاملة؟",
+    "options": [
+      "ChatOllama",
+      "ChatOpenAI",
+      "ChatBedrock",
+      "ChatGoogleGenerativeAI"
+    ],
+    "answer": 0,
+    "explanation": "ChatOllama يعمل محلياً 100% وهو مجاني وبخصوصية كاملة (سلايد 8).",
+    "page": 8
+  },
+  {
+    "question": "ماذا تعني القيمة temperature = 0؟",
+    "options": [
+      "إجابات دقيقة ومحددة (عشوائية أقل)",
+      "الحد الأقصى لرموز الرد",
+      "مدة الانتظار قبل إلغاء الطلب",
+      "إجابات إبداعية ومتنوعة"
+    ],
+    "answer": 0,
+    "explanation": "temperature تتحكم في عشوائية المخرجات: 0 دقيق جداً و1 إبداعي ومتنوع (سلايد 9).",
+    "page": 9
+  },
+  {
+    "question": "ما وظيفة المعامل max_tokens؟",
+    "options": [
+      "تحديد الحد الأقصى لعدد الرموز في الرد لتوفير التكلفة",
+      "تحديد مدة الانتظار قبل إلغاء الطلب",
+      "التحكم في عشوائية المخرجات",
+      "تحديد عدد المحاولات عند الفشل"
+    ],
+    "answer": 0,
+    "explanation": "max_tokens هو الحد الأقصى لعدد الرموز في الرد، ويفيد في توفير التكلفة (سلايد 9).",
+    "page": 9
+  },
+  {
+    "question": "ما الرسالة التي تحدد شخصية النموذج ودوره وسلوكه، وتُضاف دائماً في بداية قائمة الرسائل؟",
+    "options": [
+      "MessagesPlaceholder",
+      "AIMessage",
+      "SystemMessage",
+      "HumanMessage"
+    ],
+    "answer": 2,
+    "explanation": "SystemMessage توجيهات للنموذج تحدد شخصيته ودوره وسلوكه، وتُضاف دائماً في بداية القائمة (سلايد 10).",
+    "page": 10
+  },
+  {
+    "question": "ما الفرق بين HumanMessage وAIMessage؟",
+    "options": [
+      "HumanMessage تحدد شخصية النموذج، وAIMessage تحمل سؤال المستخدم",
+      "كلاهما يحدد شخصية النموذج ودوره",
+      "HumanMessage هي الرسالة التي يكتبها المستخدم، وAIMessage هي الرد الذي ولّده النموذج",
+      "HumanMessage هي الرد الذي ولّده النموذج، وAIMessage هي رسالة المستخدم"
+    ],
+    "answer": 2,
+    "explanation": "HumanMessage من المستخدم، وAIMessage هو الرد الذي ولّده النموذج (سلايد 10).",
+    "page": 10
+  },
+  {
+    "question": "لماذا نرسل AIMessage مع الرسائل التالية للنموذج؟",
+    "options": [
+      "لتحويل المخرجات إلى نص نظيف",
+      "لتقليل تكلفة الطلب",
+      "لحفظ تاريخ المحادثة",
+      "لتحديد شخصية النموذج ودوره"
+    ],
+    "answer": 2,
+    "explanation": "AIMessage يُستخدم لحفظ تاريخ المحادثة عند إرساله مع الرسائل التالية (سلايد 10).",
+    "page": 10
+  },
+  {
+    "question": "ما الفائدة الرئيسية من استخدام Prompt Template بدل كتابة النص يدوياً في كل مرة؟",
+    "options": [
+      "قالب واحد يخدم جميع الحالات ويسهّل الصيانة والاختبار",
+      "حفظ تاريخ المحادثة تلقائياً",
+      "زيادة الحد الأقصى لرموز الرد",
+      "تبديل النموذج بسطر واحد"
+    ],
+    "answer": 0,
+    "explanation": "الكتابة اليدوية تكرار ممل وعرضة للأخطاء، أما القالب فواحد يخدم كل الحالات وسهل الصيانة وقابل للاختبار (سلايد 12).",
+    "page": 12
+  },
+  {
+    "question": "أي قالب يُستخدم مع نماذج المحادثة (Chat Models) وهو الأكثر استخداماً؟",
+    "options": [
+      "FewShotChatMessagePromptTemplate",
+      "PromptTemplate",
+      "MessagesPlaceholder",
+      "ChatPromptTemplate"
+    ],
+    "answer": 3,
+    "explanation": "ChatPromptTemplate للنماذج التفاعلية وهو الأكثر استخداماً (سلايد 13).",
+    "page": 13
+  },
+  {
+    "question": "أي قالب يُستخدم لتوجيه النموذج بأمثلة لضمان نمط معين؟",
+    "options": [
+      "FewShotChatMessagePromptTemplate",
+      "PromptTemplate",
+      "MessagesPlaceholder",
+      "ChatPromptTemplate"
+    ],
+    "answer": 0,
+    "explanation": "FewShotChatMessagePromptTemplate يُستخدم عندما نريد توجيه النموذج بأمثلة لضمان نمط معين (سلايد 13).",
+    "page": 13
+  },
+  {
+    "question": "أي طريقة نستخدمها في ChatPromptTemplate عند الحاجة إلى System Message أو محادثة متعددة الأدوار؟",
+    "options": [
+      "batch()",
+      "from_messages()",
+      "partial()",
+      "from_template()"
+    ],
+    "answer": 1,
+    "explanation": "from_messages() تُستخدم عند الحاجة إلى System Message أو محادثة متعددة الأدوار (سلايد 14).",
+    "page": 14
+  },
+  {
+    "question": "في الكود التالي، ما المقصود بـ {lang} و {question}؟",
+    "code": "template2 = ChatPromptTemplate.from_template(\n    \"أجب على هذا السؤال باللغة {lang}: {question}\"\n)",
+    "options": [
+      "متغيرات ديناميكية يجب تمريرها عند invoke()",
+      "نصوص ثابتة لا تتغير",
+      "تعليقات لا يتم تنفيذها",
+      "أسماء نماذج لغوية"
+    ],
+    "answer": 0,
+    "explanation": "أي نص بين { } يصبح متغيراً ديناميكياً يجب تمريره عند invoke() (سلايد 14).",
+    "page": 14
+  },
+  {
+    "question": "أي طلب يُعتبر محدداً ودقيقاً حسب المحاضرة؟",
+    "options": [
+      "اعطني ملخصاً للشركة في 3 نقاط: الاسم، التأسيس، المنتج الرئيسي",
+      "أخبرني عن Python",
+      "اعطني معلومات عن الشركة",
+      "ساعدني في كتابة كود"
+    ],
+    "answer": 0,
+    "explanation": "كن محدداً ودقيقاً وحدد التنسيق المطلوب، مثل ملخص الشركة في 3 نقاط (سلايد 15).",
+    "page": 15
+  },
+  {
+    "question": "أي صياغة تحدد دور النموذج بوضوح؟",
+    "options": [
+      "أخبرني عن Python",
+      "اكتب مقال",
+      "ساعدني في كتابة كود",
+      "أنت مبرمج Python خبير. اكتب دالة لفرز قائمة مع شرح كل سطر"
+    ],
+    "answer": 3,
+    "explanation": "من أفضل الممارسات تحديد دور النموذج بوضوح، مثل: أنت مبرمج Python خبير (سلايد 15).",
+    "page": 15
+  },
+  {
+    "question": "ما فكرة Few-shot Prompting؟",
+    "options": [
+      "تدريب النموذج من الصفر على مليارات الكلمات",
+      "ربط النموذج بقواعد البيانات الخارجية",
+      "تقسيم النص إلى رموز صغيرة",
+      "نُري النموذج أمثلة على النمط المطلوب فيتعلم منها ويكمل، بدلاً من شرح المطلوب بالكلام"
+    ],
+    "answer": 3,
+    "explanation": "في Few-shot نُري النموذج أمثلة على النمط المطلوب فيتعلم منها ويكمل (سلايد 16).",
+    "page": 16
+  },
+  {
+    "question": "متى نستخدم Few-shot Prompting؟",
+    "options": [
+      "عندما نريد حفظ تاريخ المحادثة",
+      "عندما يصعب وصف النمط المطلوب بالكلام",
+      "عندما نريد تبديل النموذج بسطر واحد",
+      "عندما نريد تقليل عدد المتغيرات في القالب"
+    ],
+    "answer": 1,
+    "explanation": "نستخدمه عندما يصعب وصف النمط المطلوب بالكلام أو نريد مخرجات بتنسيق محدد (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "كم عدد الأمثلة الكافي عادةً في Few-shot Prompting؟",
+    "options": [
+      "من 50 إلى 100 مثال",
+      "أكثر من 500 مثال",
+      "مثال واحد فقط",
+      "من 3 إلى 5 أمثلة"
+    ],
+    "answer": 3,
+    "explanation": "من 3 إلى 5 أمثلة عادةً كافية، والأكثر يعني تكلفة أعلى (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ما الخطوة الأولى في بناء Few-shot Prompting ",
+    "options": [
+      "تشغيل السلسلة",
+      "بناء القالب النهائي الكامل",
+      "بناء Few-shot Template",
+      "تعريف الأمثلة (examples)"
+    ],
+    "answer": 3,
+    "explanation": "الخطوة 1 هي تعريف الأمثلة، ثم قالب مثال واحد، ثم Few-shot Template، ثم القالب النهائي، ثم تشغيل السلسلة (سلايد 16).",
+    "page": 16
+  },
+  {
+    "question": "ماذا يفعل Prompt Template في السلسلة prompt | llm | parser؟",
+    "options": [
+      "يحوّل المخرجات إلى string نظيف",
+      "يحفظ تاريخ المحادثة في ملف",
+      "يرسل الطلب إلى الـ API ويعيد AIMessage",
+      "يبني قائمة الرسائل من المدخلات"
+    ],
+    "answer": 3,
+    "explanation": "Prompt Template يبني قائمة الرسائل، وChat Model يرسل للـ API، وOutput Parser يحوّل المخرجات إلى نص (سلايد 18).",
+    "page": 18
+  },
+  {
+    "question": "ماذا يفعل Output Parser في السلسلة؟",
+    "options": [
+      "يرسل الطلب إلى الـ API ويعيد AIMessage",
+      "يبني قائمة الرسائل من المتغيرات",
+      "يحدد دور النموذج وشخصيته",
+      "يحوّل المخرجات إلى string نظيف (نص جاهز للاستخدام)"
+    ],
+    "answer": 3,
+    "explanation": "Output Parser يحوّل المخرجات إلى string نظيف أي نص جاهز للاستخدام (سلايد 18).",
+    "page": 18
+  },
+  {
+    "question": "أي دالة نستخدمها لتشغيل السلسلة على عدة مدخلات دفعة واحدة؟",
+    "options": [
+      "chain.batch()",
+      "template.partial()",
+      "chain.stream()",
+      "chain.invoke()"
+    ],
+    "answer": 0,
+    "explanation": "chain.batch() هي الطريقة الدفعية لتشغيل السلسلة على عدة مدخلات (سلايد 19).",
+    "page": 19
+  },
+  {
+    "question": "ما وظيفة partial() في القوالب؟",
+    "options": [
+      "تعبئة بعض المتغيرات مسبقاً وترك البقية للاستخدام لاحقاً",
+      "حذف المتغيرات من القالب",
+      "حفظ تاريخ المحادثة",
+      "تغيير النموذج المستخدم في السلسلة"
+    ],
+    "answer": 0,
+    "explanation": "partial() تعبئ بعض المتغيرات مسبقاً وتترك البقية، فنشتق قوالب متخصصة من قالب واحد (سلايد 20).",
+    "page": 20
+  },
+  {
+    "question": "عند ظهور AuthenticationError: Incorrect API key، متى يجب استدعاء load_dotenv()؟",
+    "options": [
+      "بعد إنشاء النموذج مباشرة",
+      "بعد تشغيل السلسلة",
+      "قبل إنشاء النموذج",
+      "داخل قالب الأوامر"
+    ],
+    "answer": 2,
+    "explanation": "من الحلول: التأكد من وجود ملف .env واستدعاء load_dotenv() قبل إنشاء النموذج (سلايد 36).",
+    "page": 36
+  },
+  {
+    "question": "ما الفرق الأساسي بين PromptTemplate و ChatPromptTemplate في LangChain ?",
+    "options": [
+      "PromptTemplate⁠ للنماذج النصية البسيطة (LLM)، بينما ⁠ChatPromptTemplate⁠ للنماذج التفاعلية ونماذج المحادثة (Chat Models). ",
+      "PromptTemplate⁠ للذاكرة، بينما ⁠ChatPromptTemplate⁠ لترجمة النصوص.",
+      "لا يوجد فرق بينهما وكلاهما يؤديان نفس الوظيفة تماماً.",
+      "PromptTemplate⁠ يعمل محلياً، بينما ⁠ChatPromptTemplate⁠ يتطلب اتصالاً بالإنترنت."
+    ],
+    "answer": 0,
+    "explanation": "setup_check.py يتحقق من تثبيت المكتبات ومن متغيرات البيئة قبل بدء المختبر (سلايد 24 و25).",
+    "page": 24
+  },
+  {
+    "question": "في الكود التالي، ماذا يمثل max_retries=2؟",
+    "code": "llm = ChatOpenAI(\n    model=\"gpt-4o-mini\",\n    temperature=0.7,\n    max_tokens=1000,\n    timeout=30,\n    max_retries=2,\n)",
+    "options": [
+      "مدة الانتظار بالثواني قبل إلغاء الطلب",
+      "عدد المحاولات عند الفشل",
+      "الحد الأقصى لرموز الرد",
+      "مستوى الإبداع في الإجابة"
+    ],
+    "answer": 1,
+    "explanation": "max_retries هو عدد المحاولات عند الفشل (سلايد 9).",
+    "page": 9
+  },
+  {
+    "question": "في الكود التالي، ما وظيفة MessagesPlaceholder('chat_history')؟",
+    "code": "template3 = ChatPromptTemplate.from_messages([\n    (\"system\", \"أنت مساعد ذكي\"),\n    MessagesPlaceholder(\"chat_history\"),\n    (\"human\", \"{input}\"),\n])",
+    "options": [
+      "يبني السلسلة بربط القالب بالنموذج",
+      "يعبّئ بعض المتغيرات مسبقاً",
+      "يحل مكانه تاريخ المحادثة (يُستخدم مع الذاكرة)",
+      "يحدد دور النموذج وشخصيته"
+    ],
+    "answer": 2,
+    "explanation": "MessagesPlaceholder يحل مكانه تاريخ المحادثة ويُستخدم مع الذاكرة (سلايد 14).",
+    "page": 14
+  },
+  {
+    "question": "في الكود التالي، ماذا ستكون إجابة النموذج؟",
+    "code": "conversation = [\n    SystemMessage(content=\"أنت مساعد برمجي ذكي\"),\n    HumanMessage(content=\"اسمي محمد وأتعلم Python\"),\n    AIMessage(content=\"أهلاً محمد! Python لغة رائعة للمبتدئين\"),\n    HumanMessage(content=\"ما اسمي؟ وما اللغة التي أتعلمها؟\"),\n]\nresponse = llm.invoke(conversation)",
+    "options": [
+      "سيجيب بتعليمات النظام فقط",
+      "سيتذكر اسمك ولغة البرمجة لأن تاريخ المحادثة مُرسل معه",
+      "لن يعرف اسمك لأن كل طلب مستقل",
+      "سيظهر خطأ لأن AIMessage لا تُوضع داخل القائمة"
+    ],
+    "answer": 1,
+    "explanation": "محادثة متعددة الأدوار مع تاريخ، فيتذكر النموذج اسمك ولغة البرمجة (سلايد 11).",
+    "page": 11
+  },
+  {
+    "question": "ما الفرق بين chain1 وchain2 في الكود التالي؟",
+    "code": "chain1 = prompt | llm\nchain2 = prompt | llm | parser",
+    "options": [
+      "كلاهما يعيد قائمة رسائل",
+      "chain1 تعيد نصاً نظيفاً، وchain2 تعيد AIMessage",
+      "chain1 لا تحتاج إلى قالب أوامر",
+      "chain1 تعيد AIMessage من النموذج، وchain2 تعيد نصاً (string) نظيفاً"
+    ],
+    "answer": 3,
+    "explanation": "Chat Model يعيد AIMessage، وOutput Parser يحوّل المخرجات إلى string نظيف (سلايد 18).",
+    "page": 18
+  },
+  {
+    "question": "أي سطر يبني السلسلة بالترتيب الصحيح؟",
+    "options": [
+      "chain = prompt | parser | llm",
+      "chain = prompt | llm | parser",
+      "chain = parser | llm | prompt",
+      "chain = llm | prompt | parser"
+    ],
+    "answer": 1,
+    "explanation": "الترتيب: القالب ثم النموذج ثم المحلل: prompt | llm | parser (سلايد 18).",
+    "page": 18
+  },
+  {
+    "question": "ماذا يفعل الكود التالي؟",
+    "code": "for chunk in chain.stream({\n    \"source_lang\": \"الإنجليزية\",\n    \"target_lang\": \"العربية\",\n    \"text\": \"Hello\",\n}):\n    print(chunk, end=\"\", flush=True)",
+    "options": [
+      "يعالج عدة مدخلات دفعة واحدة",
+      "يعرض الرد على دفعات أثناء توليده (بث مباشر)",
+      "يعبّئ بعض المتغيرات مسبقاً",
+      "يطبع الرد مرة واحدة بعد اكتماله فقط"
+    ],
+    "answer": 1,
+    "explanation": "chain.stream() تعرض الرد على دفعات أثناء توليده وهذا هو البث المباشر Streaming (سلايد 19).",
+    "page": 19
+  },
+  {
+    "question": "ما المتغير الوحيد المتبقي الذي نمرره عند تشغيل riyadh_template؟",
+    "code": "template = ChatPromptTemplate.from_messages([\n    (\"system\", \"أنت مساعد عقاري في {city}. العملة: {currency}\"),\n    (\"human\", \"{question}\"),\n])\nriyadh_template = template.partial(city=\"الرياض\", currency=\"ريال سعودي\")",
+    "options": [
+      "question",
+      "city",
+      "partial",
+      "currency"
+    ],
+    "answer": 0,
+    "explanation": "partial عبّأت city وcurrency مسبقاً، فالمتبقي question فقط (سلايد 20 و21).",
+    "page": 21
+  },
+  {
+    "question": "ما سبب الخطأ KeyError عند تنفيذ الكود التالي؟",
+    "code": "prompt = ChatPromptTemplate.from_template(\"اشرح {topic}\")\nchain = prompt | llm | parser\nchain.invoke({\"subject\": \"Python\"})",
+    "options": [
+      "نُسي استدعاء load_dotenv()",
+      "المتغير في القالب (topic) يختلف عن المتغير الممرر في invoke (subject)",
+      "قيمة temperature غير مناسبة",
+      "مفتاح API مفقود أو خاطئ"
+    ],
+    "answer": 1,
+    "explanation": "السبب أن المتغير في القالب يختلف عن المتغير الممرر في invoke()، والصحيح نفس الاسم بالضبط (سلايد 36).",
+    "page": 36
+  },
+  {
+    "question": "ما الخطأ الذي سيمنع تنفيذ الكود التالي؟",
+    "code": "template = ChatPromptTemplate.from_messages([\n    (\"system\", \"أنت {role} متخصص في {domain}\"),\n    (\"human\", \"{question}\"),\n])\nchain = template | llm | parser\nchain.invoke({\"role\": \"مدرب\", \"question\": \"ما هي القوائم؟\"})",
+    "options": [
+      "لم يتم تمرير قيمة للمتغير role",
+      "لم يتم تمرير قيمة للمتغير domain",
+      "لم يتم استخدام StrOutputParser",
+      "لم يتم تمرير قيمة للمتغير question"
+    ],
+    "answer": 1,
+    "explanation": "القالب يحتاج role وdomain وquestion، والخطأ يظهر عند نسيان تمرير متغير في invoke() (سلايد 36).",
+    "page": 36
+  },
+  {
+    "question": "ما الهدف من السطرين التاليين في الشات بوت؟",
+    "code": "history.append(HumanMessage(content=user_input))\nhistory.append(AIMessage(content=response))",
+    "options": [
+      "تغيير النموذج المستخدم",
+      "طباعة الرد على الشاشة",
+      "حفظ تاريخ المحادثة للمحادثة التالية",
+      "حذف الرسائل القديمة من المحادثة"
+    ],
+    "answer": 2,
+    "explanation": "السطران يحفظان تاريخ المحادثة للمحادثة التالية (سلايد 33).",
+    "page": 33
+  },
+  {
+    "question": "ماذا يفعل الكود التالي في الشات بوت؟",
+    "code": "if len(history) > 10:\n    history = history[-10:]",
+    "options": [
+      "يحتفظ بأول 10 رسائل فقط",
+      "يضيف 10 رسائل جديدة",
+      "يحتفظ بآخر 10 رسائل فقط",
+      "يحذف آخر 10 رسائل"
+    ],
+    "answer": 2,
+    "explanation": "الكود يحتفظ بآخر 10 رسائل فقط من تاريخ المحادثة (سلايد 33).",
+    "page": 33
+  },
+  {
+    "question": "ماذا يتحقق منه الشرط في الكود التالي؟",
+    "code": "openai_key = os.getenv(\"OPENAI_API_KEY\")\nif openai_key and openai_key.startswith(\"sk-\"):\n    print(\"OPENAI_API_KEY موجود وصحيح الشكل\")",
+    "options": [
+      "أن النموذج gpt-4o-mini يعمل",
+      "أن المفتاح موجود وشكله صحيح (يبدأ بـ sk-)",
+      "أن ملف requirements.txt موجود",
+      "أن المكتبات مثبتة على الجهاز"
+    ],
+    "answer": 1,
+    "explanation": "الشرط يتحقق من وجود المفتاح ومن أن شكله صحيح أي يبدأ بـ sk- (سلايد 25).",
+    "page": 25
+  },
+  {
+    "question": "كم متغيراً يحتاج القالب التالي عند تشغيل السلسلة؟",
+    "code": "teacher_template = ChatPromptTemplate.from_messages([\n    (\"system\", \"\"\"أنت مدرّس {subject} خبير.\n- مستوى الطالب: {level}\n- أسلوبك: {style}\n- الطول المطلوب: {length}\"\"\"),\n    (\"human\", \"{question}\"),\n])",
+    "options": [
+      "6 متغيرات",
+      "4 متغيرات",
+      "3 متغيرات",
+      "5 متغيرات"
+    ],
+    "answer": 3,
+    "explanation": "المتغيرات: subject وlevel وstyle وlength وquestion، أي 5 (سلايد 26 و27).",
+    "page": 26
+  },
+  {
+    "question": "في الكود التالي، ما وظيفة example_prompt؟",
+    "code": "example_prompt = ChatPromptTemplate.from_messages([\n    (\"human\", \"{input}\"),\n    (\"ai\", \"{output}\"),\n])",
+    "options": [
+      "قالب لتعبئة المتغيرات مسبقاً",
+      "القالب النهائي الكامل الذي يُرسل للنموذج",
+      "قالب مثال واحد يوضح شكل السؤال (input) والجواب (output)",
+      "قالب لحفظ تاريخ المحادثة"
+    ],
+    "answer": 2,
+    "explanation": "الخطوة 2 في Few-shot هي قالب مثال واحد يوضح شكل الدخل والخرج (سلايد 16).",
+    "page": 16
+  }
+]
