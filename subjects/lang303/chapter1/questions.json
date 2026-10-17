@@ -314,14 +314,14 @@
     "page": 24
   },
   {
-    "question": "ما أدنى إصدار Python المطلوب للعمل مع LangChain حسب المحاضرة؟",
+    "question": "ما هو اسم الملف المستخدم لتخزين مفاتيح API وإعدادات المشروع بشكل آمن ودون مشاركتها؟ ",
     "options": [
-      "Python 3.9 أو أحدث",
-      "Python 2.7",
-      "Python 3.7",
-      "Python 3.5"
+      "⁠requirements.txt⁠",
+      ".env",
+      "⁠hello_langchain.py⁠",
+      "⁠config.json"
     ],
-    "answer": 0,
+    "answer": 1,
     "explanation": "المطلوب Python 3.9+ وأي إصدار أعلى من 3.9 مناسب (سلايد 22 و23).",
     "page": 22
   },

@@ -273,7 +273,7 @@ def parse_form_link(link):
 
 
 def send_feedback(text):
-    form_id, entry = parse_form_link("https://docs.google.com/forms/d/e/1FAIpQLSeoxLwcGietPoXVOIR63DlBtB43DZ0ga4jJHq9gB2sYnwAQiQ/viewform?usp=publish-editor")
+    form_id, entry = parse_form_link("https://docs.google.com/forms/d/e/1FAIpQLSeoxLwcGietPoXVOIR63DlBtB43DZ0ga4jJHq9gB2sYnwAQiQ/viewform")
     if not form_id:
         return False
     url = f"https://docs.google.com/forms/d/e/{form_id}/formResponse"
