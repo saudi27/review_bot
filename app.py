@@ -1,17 +1,128 @@
+import base64
 import json
 import os
 import random
 import streamlit as st
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+SUBJECTS_DIR = os.path.join(BASE_DIR, "subjects")
+ASSETS_DIR = os.path.join(BASE_DIR, "assets")
+ROUND_SIZE = 10
+
+icon_path = os.path.join(ASSETS_DIR, "logo_icon.png")
+st.set_page_config(
+    page_title="راجِع",
+    page_icon=icon_path if os.path.exists(icon_path) else "📘",
+    layout="centered",
+)
+
 st.markdown("""
 <style>
-.stApp { direction: rtl; text-align: right; }
-[data-testid="stCode"], pre, code { direction: ltr; text-align: left; }
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Tajawal:wght@400;500;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+.stApp, .stApp p, .stApp label, .stApp li, .stApp h1, .stApp h2, .stApp h3,
+.stApp h4, .stApp button, .stApp input, .stApp textarea {
+    font-family: 'Inter', 'Tajawal', sans-serif !important;
+}
+
+.stApp { background-color: #F6F5EF; direction: rtl; text-align: right; }
+.block-container { padding-top: 1.5rem; padding-bottom: 3rem; max-width: 720px; }
+#MainMenu, footer { visibility: hidden; }
+header[data-testid="stHeader"] { background: transparent; }
+
+h1, h2, h3, h4 { color: #173B52; font-weight: 700; }
+
+/* الأزرار */
+.stButton { width: 100%; }
+.stButton > button { width: 100%; }
+
+button[kind="primary"], button[data-testid="stBaseButton-primary"] {
+    background-color: #176447 !important;
+    color: #FFFFFF !important;
+    border: none !important;
+    border-radius: 14px !important;
+    padding: 0.7rem 1.4rem !important;
+    font-weight: 700 !important;
+    box-shadow: 0 1px 3px rgba(23, 59, 82, 0.12) !important;
+}
+button[kind="primary"]:hover, button[data-testid="stBaseButton-primary"]:hover {
+    background-color: #0F4F38 !important;
+}
+button[kind="primary"] p, button[data-testid="stBaseButton-primary"] p {
+    color: #FFFFFF !important;
+}
+
+/* بطاقات المواد والمواضيع */
+button[kind="secondary"], button[data-testid="stBaseButton-secondary"] {
+    background-color: #FFFFFF !important;
+    color: #173B52 !important;
+    border: 1px solid #A9C8B2 !important;
+    border-radius: 14px !important;
+    padding: 0.9rem 1rem !important;
+    font-weight: 600 !important;
+    box-shadow: 0 1px 2px rgba(23, 59, 82, 0.06) !important;
+}
+button[kind="secondary"]:hover, button[data-testid="stBaseButton-secondary"]:hover {
+    border-color: #176447 !important;
+    background-color: #F0F6F2 !important;
+}
+button[kind="secondary"]:hover p, button[data-testid="stBaseButton-secondary"]:hover p {
+    color: #176447 !important;
+}
+
+/* الأكواد */
+[data-testid="stCode"], [data-testid="stCode"] pre, pre {
+    direction: ltr;
+    text-align: left;
+}
+[data-testid="stCode"], [data-testid="stCode"] pre {
+    background-color: #173B52 !important;
+    border-radius: 12px !important;
+}
+[data-testid="stCode"] code, [data-testid="stCode"] code span {
+    font-family: 'JetBrains Mono', monospace !important;
+    color: #EAF1F5 !important;
+    background: transparent !important;
+    font-size: 0.88rem;
+}
+
+/* شريط التقدم */
+.stProgress > div > div > div > div { background-color: #176447; }
+
+/* صفحة البداية */
+.welcome {
+    text-align: center;
+    color: #176447;
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin: 6px 0 28px 0;
+}
+.logo-box { text-align: center; direction: ltr; }
 </style>
 """, unsafe_allow_html=True)
 
-SUBJECTS_DIR = "subjects"
-ROUND_SIZE = 10
+
+@st.cache_data
+def img_b64(name):
+    path = os.path.join(ASSETS_DIR, name)
+    if not os.path.exists(path):
+        return ""
+    with open(path, "rb") as f:
+        return base64.b64encode(f.read()).decode()
+
+
+def logo_html(icon_width, name_width, top_space):
+    icon = img_b64("logo_icon.png")
+    name = img_b64("logo_name.png")
+    html = f'<div class="logo-box" style="margin-top:{top_space}px;">'
+    if icon and icon_width:
+        html += (f'<img src="data:image/png;base64,{icon}" '
+                 f'style="width:{icon_width}px; max-width:60%;">')
+    if name:
+        html += (f'<br><img src="data:image/png;base64,{name}" '
+                 f'style="width:{name_width}px; max-width:70%; margin-top:4px;">')
+    html += '</div>'
+    return html
 
 
 def read_json(path):
@@ -50,6 +161,10 @@ def start_round():
     st.session_state.rid = random.randint(0, 10**9)
 
 
+def start_app():
+    st.session_state.started = True
+
+
 def open_subject(folder, name):
     st.session_state.subject = folder
     st.session_state.subject_name = name
@@ -72,28 +187,41 @@ def go_chapters():
     st.session_state.chapter = None
 
 
+if "started" not in st.session_state:
+    st.session_state.started = False
 if "subject" not in st.session_state:
     st.session_state.subject = None
 if "chapter" not in st.session_state:
     st.session_state.chapter = None
 
-st.title("بوت المراجعة")
+# ---------------- صفحة البداية ----------------
+if not st.session_state.started:
+    st.markdown(logo_html(150, 230, 40), unsafe_allow_html=True)
+    st.markdown('<p class="welcome">مراجعتك الذكية، لمستقبلك الأذكى</p>',
+                unsafe_allow_html=True)
+    st.button("ابدأ المراجعة", type="primary", on_click=start_app)
+    st.stop()
 
+# ---------------- ترويسة صغيرة لباقي الصفحات ----------------
+st.markdown(logo_html(0, 120, 0), unsafe_allow_html=True)
+
+# ---------------- اختيار المادة ----------------
 if st.session_state.subject is None:
     st.subheader("اختر المادة")
     for folder, name in list_subjects():
         st.button(name, key=f"s_{folder}", on_click=open_subject,
-                  args=(folder, name), use_container_width=True)
+                  args=(folder, name))
 
+# ---------------- اختيار الموضوع ----------------
 elif st.session_state.chapter is None:
     st.subheader(st.session_state.subject_name)
     st.button("رجوع للمواد", on_click=go_home)
     for number, title, folder in list_chapters(st.session_state.subject):
         st.button(f"الموضوع {number}: {title}", key=f"c_{folder}",
                   on_click=open_chapter,
-                  args=(st.session_state.subject, folder, number, title),
-                  use_container_width=True)
+                  args=(st.session_state.subject, folder, number, title))
 
+# ---------------- الأسئلة ----------------
 else:
     st.caption(f"{st.session_state.subject_name} | {st.session_state.chapter_title}")
     st.button("رجوع للمواضيع", on_click=go_chapters)
@@ -118,7 +246,7 @@ else:
         )
 
         if not st.session_state.checked:
-            if st.button("تحقق"):
+            if st.button("تحقق", type="primary"):
                 if choice is None:
                     st.warning("اختر إجابة أول")
                 else:
@@ -134,7 +262,7 @@ else:
                 st.write("الإجابة الصحيحة:", q["options"][q["answer"]])
             st.info(q["explanation"])
             label = "السؤال التالي" if i + 1 < total else "عرض النتيجة"
-            if st.button(label):
+            if st.button(label, type="primary"):
                 st.session_state.i += 1
                 st.session_state.checked = False
                 st.rerun()
@@ -163,6 +291,6 @@ else:
             st.write("الإجابة الصحيحة:", qq["options"][qq["answer"]])
             st.caption(qq["explanation"])
 
-        if st.button("جولة جديدة"):
+        if st.button("جولة جديدة", type="primary"):
             start_round()
             st.rerun()
