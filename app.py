@@ -3,7 +3,9 @@ import io
 import json
 import os
 import random
+import re
 
+import requests
 import streamlit as st
 from PIL import Image
 
@@ -15,6 +17,10 @@ except Exception:
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SUBJECTS_DIR = os.path.join(BASE_DIR, "subjects")
 ROUND_SIZE = 10
+
+# رابط نموذج قوقل المعبأ مسبقاً (Pre-filled link) لاستقبال اقتراحات الطلاب.
+# إذا تركتيه فاضي تختفي خانة الاقتراحات من الموقع.
+FEEDBACK_FORM_LINK = ""
 
 
 def page_icon():
@@ -78,7 +84,7 @@ header[data-testid="stHeader"] { background: transparent !important; }
 
 /* الأزرار الرئيسية: أخضر عميق ونص أبيض */
 button[kind="primary"], button[data-testid="stBaseButton-primary"] {
-    background-color: #A9CB2 !important;
+    background-color: #A9C8B2 !important;
     border: none !important;
     border-radius: 14px !important;
     padding: 0.7rem 1.4rem !important;
@@ -163,6 +169,25 @@ button[kind="secondary"]:hover, button[data-testid="stBaseButton-secondary"]:hov
     font-size: 0.88rem !important;
 }
 
+/* خانة الاقتراحات */
+[data-testid="stTextArea"] [data-baseweb="textarea"], [data-testid="stTextArea"] [data-baseweb="base-input"] {
+    background-color: #FFFFFF !important;
+    border: 1px solid #A9C8B2 !important;
+    border-radius: 12px !important;
+}
+[data-testid="stTextArea"] textarea {
+    direction: rtl !important;
+    text-align: right !important;
+    color: #173B52 !important;
+    background-color: #FFFFFF !important;
+    font-size: 1rem !important;
+}
+[class*="st-key-feedback_btn"] button, [class*="st-key-feedback_btn"] button[kind="secondary"] {
+    background-color: transparent !important;
+    border: 2px dashed #A9C8B2 !important;
+    box-shadow: none !important;
+}
+
 /* صفحة البداية */
 .hero { text-align: center; margin-top: 4vh; direction: rtl; }
 .hero img { display: inline-block; }
@@ -239,6 +264,50 @@ def open_chapter(subject, folder, number, title):
     start_round()
 
 
+def parse_form_link(link):
+    m_id = re.search(r"/forms/d/e/([A-Za-z0-9_-]+)/", link or "")
+    m_entry = re.search(r"entry\.(\d+)=", link or "")
+    if m_id and m_entry:
+        return m_id.group(1), "entry." + m_entry.group(1)
+    return None, None
+
+
+def send_feedback(text):
+    form_id, entry = parse_form_link("https://docs.google.com/forms/d/e/1FAIpQLSeoxLwcGietPoXVOIR63DlBtB43DZ0ga4jJHq9gB2sYnwAQiQ/viewform?usp=publish-editor")
+    if not form_id:
+        return False
+    url = f"https://docs.google.com/forms/d/e/{form_id}/formResponse"
+    try:
+        r = requests.post(url, data={entry: text}, timeout=10)
+        return r.status_code == 200
+    except Exception:
+        return False
+
+
+def submit_feedback():
+    text = (st.session_state.get("fb_text") or "").strip()
+    if st.session_state.fb_count >= 5:
+        st.session_state.fb_status = "limit"
+    elif len(text) < 3:
+        st.session_state.fb_status = "empty"
+    elif send_feedback(text[:600]):
+        st.session_state.fb_status = "ok"
+        st.session_state.fb_count += 1
+        st.session_state.fb_text = ""
+    else:
+        st.session_state.fb_status = "error"
+
+
+def open_feedback():
+    st.session_state.view = "feedback"
+    st.session_state.fb_status = None
+
+
+def close_feedback():
+    st.session_state.view = None
+    st.session_state.fb_status = None
+
+
 def go_home():
     st.session_state.subject = None
     st.session_state.chapter = None
@@ -254,6 +323,12 @@ if "subject" not in st.session_state:
     st.session_state.subject = None
 if "chapter" not in st.session_state:
     st.session_state.chapter = None
+if "view" not in st.session_state:
+    st.session_state.view = None
+if "fb_count" not in st.session_state:
+    st.session_state.fb_count = 0
+if "fb_status" not in st.session_state:
+    st.session_state.fb_status = None
 
 # ---------------- صفحة البداية ----------------
 if not st.session_state.started:
@@ -277,12 +352,35 @@ if LOGO_NAME_B64:
     st.markdown(f'<div class="mini-logo">{logo_tag(LOGO_NAME_B64, 120)}</div>',
                 unsafe_allow_html=True)
 
+# ---------------- صفحة الاقتراحات ----------------
+if st.session_state.view == "feedback":
+    st.button("رجوع", key="back_feedback", on_click=close_feedback)
+    st.markdown('<h2 class="page-title">اقتراحاتك تهمنا</h2>', unsafe_allow_html=True)
+    st.write("اكتب اقتراحك أو ملاحظتك على الموقع، أو أي شي تحب نضيفه، وراح نقرأ كل رسالة.")
+    st.text_area("اقتراحك", key="fb_text", max_chars=600, height=170,
+                 placeholder="اكتب هنا...", label_visibility="collapsed")
+    st.button("إرسال", type="primary", key="send_fb", on_click=submit_feedback,
+              use_container_width=True)
+    status = st.session_state.fb_status
+    if status == "ok":
+        st.success("وصلت رسالتك، شكراً لك 🤍")
+    elif status == "empty":
+        st.warning("اكتب اقتراحك أول")
+    elif status == "limit":
+        st.warning("وصلت للحد الأقصى من الرسائل في هذه الجلسة")
+    elif status == "error":
+        st.error("تعذر إرسال الرسالة، حاول مرة ثانية بعد قليل")
+
 # ---------------- اختيار المادة ----------------
-if st.session_state.subject is None:
+elif st.session_state.subject is None:
     st.markdown('<h2 class="page-title">اختر المادة</h2>', unsafe_allow_html=True)
     for folder, name in list_subjects():
         st.button(name, key=f"s_{folder}", on_click=open_subject,
                   args=(folder, name), use_container_width=True)
+    if parse_form_link(FEEDBACK_FORM_LINK)[0]:
+        st.markdown("<div style='height:1.2rem'></div>", unsafe_allow_html=True)
+        st.button("💬 اقتراحات وملاحظات", key="feedback_btn", on_click=open_feedback,
+                  use_container_width=True)
 
 # ---------------- اختيار الموضوع ----------------
 elif st.session_state.chapter is None:
@@ -354,6 +452,11 @@ else:
         else:
             st.error("تحتاج ترجع تذاكر المحاضرة وتعيد المحاولة 🔁")
 
+        st.button("جولة جديدة", type="primary", key="new_round", on_click=start_round,
+                  use_container_width=True)
+        st.button("الرجوع للصفحة الرئيسية", key="home_end", on_click=go_home,
+                  use_container_width=True)
+
         st.subheader("ملخص الأسئلة")
         for n, (qq, a) in enumerate(zip(qs, answers), start=1):
             ok = a == qq["answer"]
@@ -367,6 +470,3 @@ else:
                 st.write("الإجابة الصحيحة:", qq["options"][qq["answer"]])
                 st.caption(qq["explanation"])
 
-        if st.button("جولة جديدة", type="primary", use_container_width=True):
-            start_round()
-            st.rerun()
