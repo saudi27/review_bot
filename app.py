@@ -282,7 +282,7 @@ def send_feedback(text):
         return r.status_code == 200
     except Exception:
         return False
-
+    
 
 def submit_feedback():
     text = (st.session_state.get("fb_text") or "").strip()
