@@ -20,7 +20,7 @@ ROUND_SIZE = 10
 
 # رابط نموذج قوقل المعبأ مسبقاً (Pre-filled link) لاستقبال اقتراحات الطلاب.
 # إذا تركتيه فاضي تختفي خانة الاقتراحات من الموقع.
-FEEDBACK_FORM_LINK = "https://forms.gle/vtWfPoe41zVUF1Wm9"
+FEEDBACK_FORM_LINK = "https://docs.google.com/forms/d/e/1FAIpQLSeoxLwcGietPoXVOIR63DlBtB43DZ0ga4jJHq9gB2sYnwAQiQ/viewform?usp=pp_url&entry.433019113=Test"
 
 
 def page_icon():
