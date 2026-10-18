@@ -1,0 +1,560 @@
+[
+  {
+    "question": "ما هي مكتبة Transformers؟",
+    "options": [
+      "لغة برمجة جديدة",
+      "مكتبة مفتوحة المصدر من Hugging Face توفر آلاف النماذج المدربة مسبقاً لمهام اللغة والرؤية والصوت",
+      "قاعدة بيانات للصور",
+      "أداة لتصميم الواجهات"
+    ],
+    "answer": 1,
+    "explanation": "Transformers مكتبة مفتوحة المصدر من Hugging Face توفر آلاف النماذج المدربة مسبقاً (سلايد 7).",
+    "page": 7
+  },
+  {
+    "question": "ما الأطر التي تدعمها مكتبة Transformers؟",
+    "options": [
+      "Excel وWord وPowerPoint",
+      "PyTorch وTensorFlow وJAX",
+      "Django وFlask وNode",
+      "Gradio وStreamlit وFlask"
+    ],
+    "answer": 1,
+    "explanation": "المكتبة تدعم PyTorch وTensorFlow وJAX (سلايد 7).",
+    "page": 7
+  },
+  {
+    "question": "ماذا يفعل الأمر التالي؟",
+    "code": "pip install transformers[torch]",
+    "options": [
+      "يثبّت مكتبة Transformers مع PyTorch",
+      "يحذف المكتبة",
+      "يحدّث PyTorch فقط",
+      "يثبّت المكتبة مع TensorFlow"
+    ],
+    "answer": 0,
+    "explanation": "transformers[torch] تثبيت مع PyTorch، وtransformers[tf-cpu] تثبيت مع TensorFlow (سلايد 9).",
+    "page": 9
+  },
+  {
+    "question": "على أي مبدأ يقوم نموذج Transformer؟",
+    "options": [
+      "شبكات CNN فقط",
+      "الانتباه الذاتي (Self-Attention) الذي يربط كل كلمة بالكلمات الأخرى في الجملة",
+      "الشبكات التكرارية (RNN) فقط",
+      "الذاكرة طويلة المدى (LSTM)"
+    ],
+    "answer": 1,
+    "explanation": "Transformer مبني على مبدأ الانتباه الذاتي الذي يربط كل كلمة بالكلمات الأخرى (سلايد 11).",
+    "page": 11
+  },
+  {
+    "question": "ما الميزة الرئيسية لآلية Self-Attention مقارنة بـ RNN؟",
+    "options": [
+      "تعالج جميع العناصر بشكل متوازٍ وتربط كل عنصر بالآخرين مباشرة",
+      "تستخدم ذاكرة طويلة الأمد مثل LSTM",
+      "تعالج العناصر واحداً تلو الآخر",
+      "تعتمد على شبكات CNN"
+    ],
+    "answer": 0,
+    "explanation": "Self-Attention تحسب العلاقة بين كل زوج من الـ Tokens دفعة واحدة مما يتيح المعالجة المتوازية (سلايد 50).",
+    "page": 50
+  },
+  {
+    "question": "أي مما يلي ليس من الطبقات الأساسية في Transformer؟",
+    "options": [
+      "Multi-Head Attention",
+      "Feed-Forward Network",
+      "طبقة الالتفاف (Convolution) الخاصة بشبكات CNN",
+      "Positional Encoding"
+    ],
+    "answer": 2,
+    "explanation": "الطبقات الأساسية: Input Embedding وPositional Encoding وMulti-Head Attention وFeed-Forward Network (سلايد 11).",
+    "page": 11
+  },
+  {
+    "question": "ما وظيفة Encoder في Transformer؟",
+    "options": [
+      "يترجم النص إلى لغة أخرى مباشرة",
+      "ينتج الرمز التالي بشكل تسلسلي",
+      "يحول النص المدخل إلى تمثيل رياضي عميق يحمل المعنى السياقي لكل كلمة",
+      "يمنع رؤية الرموز المستقبلية أثناء التدريب"
+    ],
+    "answer": 2,
+    "explanation": "Encoder يحول النص إلى تمثيل رياضي عميق يحمل المعنى السياقي لكل كلمة (سلايد 12).",
+    "page": 12
+  },
+  {
+    "question": "ما وظيفة Decoder في Transformer؟",
+    "options": [
+      "حساب درجة F1 للنموذج",
+      "تحويل النص إلى تمثيل رياضي للفهم فقط",
+      "التوليد التسلسلي: ينتج الرمز التالي بناءً على السياق والرموز المولَّدة سابقاً",
+      "إضافة معلومات موضع الكلمة"
+    ],
+    "answer": 2,
+    "explanation": "Decoder يستخدم للتوليد التسلسلي: ينتج الرمز التالي بناءً على السياق (سلايد 13).",
+    "page": 13
+  },
+  {
+    "question": "ماذا تفعل آلية Masked Self-Attention في Decoder؟",
+    "options": [
+      "تمنعه من رؤية الرموز المستقبلية أثناء التدريب",
+      "تسمح له برؤية الجملة كاملة",
+      "تخفي جميع الكلمات",
+      "تحذف الرموز القديمة"
+    ],
+    "answer": 0,
+    "explanation": "الانتباه المقنَّع يمنع Decoder من رؤية الرموز المستقبلية أثناء التدريب (سلايد 13).",
+    "page": 13
+  },
+  {
+    "question": "أي نماذج تعتمد على Encoder فقط، وفيم تتفوق؟",
+    "options": [
+      "T5 وBART، وتتفوق في الترجمة والتلخيص",
+      "GPT وLLaMA، وتتفوق في توليد النصوص",
+      "BERT وRoBERTa، وتتفوق في مهام الفهم مثل تصنيف النصوص والإجابة على الأسئلة",
+      "ViT وYOLO، وتتفوق في الرؤية فقط"
+    ],
+    "answer": 2,
+    "explanation": "نماذج Encoder فقط مثل BERT وRoBERTa تتفوق في مهام الفهم (سلايد 12 و16).",
+    "page": 12
+  },
+  {
+    "question": "أي مجموعة نماذج تعتمد على Decoder فقط؟",
+    "options": [
+      "BERT وRoBERTa وDistilBERT",
+      "GPT-2 وLLaMA وMistral",
+      "BERT وT5 وGPT-2",
+      "T5 وBART وMarianMT"
+    ],
+    "answer": 1,
+    "explanation": "Decoder-Only أمثلة: GPT-2 وGPT-3 وLLaMA وMistral، ومهامها توليد النصوص والحوار (سلايد 16).",
+    "page": 16
+  },
+  {
+    "question": "ما المهام المناسبة لنماذج Encoder-Decoder مثل T5 وBART؟",
+    "options": [
+      "تصنيف النصوص فقط",
+      "تصنيف الصور",
+      "التعرف على الكلام",
+      "الترجمة والتلخيص وتحويل النص إلى نص"
+    ],
+    "answer": 3,
+    "explanation": "نماذج Encoder-Decoder مثل T5 وBART تتفوق في الترجمة والتلخيص وتحويل النص إلى نص (سلايد 13 و16).",
+    "page": 13
+  },
+  {
+    "question": "ما المتجهات الثلاثة التي يحوّل إليها Self-Attention كل Token؟",
+    "options": [
+      "Train وTest وDev",
+      "Query وKey وValue",
+      "Input وOutput وHidden",
+      "Encoder وDecoder وHead"
+    ],
+    "answer": 1,
+    "explanation": "الخطوة الأولى: تحويل كل Token إلى ثلاثة متجهات Query (Q) وKey (K) وValue (V) (سلايد 14).",
+    "page": 14
+  },
+  {
+    "question": "ما الخطوة التي تأتي بعد حساب درجة التشابه Q × K في Self-Attention؟",
+    "options": [
+      "حذف متجه Query",
+      "ضرب أوزان الانتباه في متجهات V",
+      "تحويل كل Token إلى ثلاثة متجهات",
+      "تطبيق دالة Softmax للحصول على أوزان الانتباه"
+    ],
+    "answer": 3,
+    "explanation": "الخطوات: 1 تحويل Q,K,V، 2 حساب التشابه، 3 تطبيق Softmax، 4 ضرب الأوزان في V (سلايد 14).",
+    "page": 14
+  },
+  {
+    "question": "ما فكرة Multi-Head Attention؟",
+    "options": [
+      "تقليل عدد الكلمات في الجملة",
+      "تشغيل الانتباه مرة واحدة فقط",
+      "ترجمة النص إلى عدة لغات",
+      "تشغيل آلية الانتباه عدة مرات بشكل متوازٍ لالتقاط أنواع مختلفة من العلاقات"
+    ],
+    "answer": 3,
+    "explanation": "Multi-Head Attention تشغّل الانتباه عدة مرات بشكل متوازٍ لالتقاط علاقات مختلفة (سلايد 14).",
+    "page": 14
+  },
+  {
+    "question": "لماذا يحتاج Transformer إلى Positional Encoding بينما لا تحتاجه RNN؟",
+    "options": [
+      "لأنه يحسّن دقة النموذج في كل المهام مهما كانت البنية",
+      "لأن RNN تعالج التسلسل بالترتيب فتحمل معلومات الموضع ضمنياً، بينما Transformer يعالج كل العناصر دفعة واحدة فيفقد الترتيب",
+      "لأن RNN لا تستطيع استيعاب المتجهات الموضعية",
+      "لأن Transformer لا يستطيع معالجة النصوص الطويلة بدونه"
+    ],
+    "answer": 1,
+    "explanation": "Transformer يعالج كل العناصر دفعة واحدة لذلك نضيف معلومات موضع كل كلمة (سلايد 15 و53).",
+    "page": 53
+  },
+  {
+    "question": "كيف يُضاف الترميز الموضعي (Positional Encoding) في الصيغة الأصلية؟",
+    "options": [
+      "يُضرب في Softmax",
+      "يُحذف من الجملة",
+      "يُضاف متجه موضعي لكل Token Embedding باستخدام دوال sin وcos",
+      "يُستبدل بمتجه Value"
+    ],
+    "answer": 2,
+    "explanation": "يُضاف متجه موضعي لكل Token Embedding باستخدام دوال sin وcos بترددات مختلفة (سلايد 15).",
+    "page": 15
+  },
+  {
+    "question": "ما مفهوم Transfer Learning؟",
+    "options": [
+      "نقل الملفات بين الأجهزة",
+      "نقل المعرفة المكتسبة من مهمة عامة إلى مهمة محددة",
+      "ترجمة النموذج إلى العربية",
+      "تحويل النص إلى صوت"
+    ],
+    "answer": 1,
+    "explanation": "Transfer Learning هو نقل المعرفة المكتسبة من مهمة عامة إلى مهمة محددة (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ما الفرق بين Zero-shot وFine-tuning؟",
+    "options": [
+      "Zero-shot ضبط النموذج على بيانات خاصة، وFine-tuning استخدامه دون تدريب",
+      "كلاهما لا يحتاج إلى نموذج",
+      "كلاهما تدريب من الصفر",
+      "Zero-shot استخدام النموذج مباشرة دون تدريب إضافي، وFine-tuning ضبطه على بيانات صغيرة خاصة بمجالك"
+    ],
+    "answer": 3,
+    "explanation": "Zero-shot استخدام مباشر دون تدريب إضافي، وFine-tuning ضبط على بيانات صغيرة خاصة بمجالك (سلايد 17).",
+    "page": 17
+  },
+  {
+    "question": "ما الفرق الجوهري بين Pre-training وFine-tuning؟",
+    "options": [
+      "Pre-training يستخدم GPU بينما Fine-tuning يعمل على CPU فقط",
+      "Pre-training يدرّب النموذج من الصفر على بيانات ضخمة عامة، أما Fine-tuning فيضبط نموذجاً جاهزاً على بيانات صغيرة متخصصة",
+      "مصطلحان مترادفان لنفس العملية",
+      "Fine-tuning أبطأ وأكثر تكلفة دائماً"
+    ],
+    "answer": 1,
+    "explanation": "Fine-tuning أسرع وأرخص بكثير لأنه يبدأ من أوزان جاهزة بدلاً من الصفر (سلايد 55).",
+    "page": 55
+  },
+  {
+    "question": "أي مهمة نستخدمها لتحليل آراء العملاء ومراجعات المنتجات؟",
+    "options": [
+      "text-generation",
+      "translation",
+      "sentiment-analysis",
+      "fill-mask"
+    ],
+    "answer": 2,
+    "explanation": "تحليل المشاعر يُستخدم في تحليل آراء العملاء ومراجعات المنتجات (سلايد 22).",
+    "page": 22
+  },
+  {
+    "question": "كيف نستخدم نموذجاً بلغة أخرى (مثل العربية) في Pipeline؟",
+    "options": [
+      "بإعادة تثبيت Python",
+      "بتغيير اسم مكتبة Transformers",
+      "بتغيير معامل model إلى نموذج يدعم تلك اللغة",
+      "لا يمكن تغيير اللغة"
+    ],
+    "answer": 2,
+    "explanation": "يمكن تخصيص نموذج بأي لغة بتغيير معامل model في pipeline (سلايد 22).",
+    "page": 22
+  },
+  {
+    "question": "في المثال التالي، ماذا تعني الرموز PER وORG وLOC؟",
+    "code": "ner = pipeline(\"token-classification\", aggregation_strategy=\"simple\")\nresult = ner(\"Bill Gates founded Microsoft in Seattle\")\n# Bill Gates -> PER | Microsoft -> ORG | Seattle -> LOC",
+    "options": [
+      "PER أشخاص، وORG منظمات وشركات، وLOC أماكن ومواقع جغرافية",
+      "PER أماكن، وORG أشخاص، وLOC منظمات",
+      "كلها أسماء مكتبات بايثون",
+      "PER مشاعر، وORG أسئلة، وLOC ترجمات"
+    ],
+    "answer": 0,
+    "explanation": "PER أسماء الأشخاص، وORG المنظمات والشركات، وLOC المدن والدول والمواقع (سلايد 23).",
+    "page": 23
+  },
+  {
+    "question": "كيف يعمل نموذج QA (Extractive QA) في المحاضرة؟",
+    "options": [
+      "يترجم السؤال إلى لغة أخرى",
+      "يبحث عن الإجابة داخل نص محدد (context) ويعيد الإجابة مع موضعها ودرجة الثقة",
+      "يلخص السؤال في جملة",
+      "يولّد الإجابة من الذاكرة دون نص"
+    ],
+    "answer": 1,
+    "explanation": "نموذج QA يبحث عن الإجابة داخل نص محدد ويعيد موضع البداية والنهاية مع درجة الثقة (سلايد 24).",
+    "page": 24
+  },
+  {
+    "question": "نريد بناء نظام يلخص نصاً طويلاً في 3 جمل. أي كود صحيح؟",
+    "options": [
+      "pipeline(\"question-answering\")(question=\"Summarize this\", context=long_text)",
+      "pipeline(\"sentiment-analysis\")(long_text)",
+      "pipeline(\"summarization\")(long_text, max_length=60, min_length=20)",
+      "pipeline(\"fill-mask\")(long_text)"
+    ],
+    "answer": 2,
+    "explanation": "summarization هي المهمة المصممة لتلخيص النصوص، وmax_length وmin_length يتحكمان في حجم الملخص (سلايد 54).",
+    "page": 54
+  },
+  {
+    "question": "ما استخدامات مهمة fill-mask؟",
+    "options": [
+      "تلخيص المقالات",
+      "ترجمة النصوص",
+      "اختبار ما تعلمه النموذج وفهم التحيزات في البيانات وتحليل دلالات الكلمات",
+      "التعرف على الكلام"
+    ],
+    "answer": 2,
+    "explanation": "fill-mask تستخدم لاختبار ما تعلمه النموذج وفهم التحيزات وتحليل دلالات الكلمات (سلايد 27).",
+    "page": 27
+  },
+  {
+    "question": "ما رمز القناع المستخدم مع BERT ومع RoBERTa؟",
+    "options": [
+      "BERT يستخدم [MASK]، وRoBERTa يستخدم `<mask>`",
+      "كلاهما يستخدم `<mask>`",
+      "BERT يستخدم `<mask>`، وRoBERTa يستخدم [MASK]",
+      "كلاهما يستخدم [MASK]"
+    ],
+    "answer": 0,
+    "explanation": "كل نموذج له رمز masking مختلف: [MASK] لـ BERT و<mask> لـ RoBERTa (سلايد 27).",
+    "page": 27
+  },
+  {
+    "question": "ما الناتج المتوقع لتنفيذ pipeline('fill-mask')('The sky is [MASK].')؟",
+    "options": [
+      "قائمة كلمات مرتبة بأعلى احتمال لملء الفراغ مع درجة كل كلمة (مثل blue)",
+      "تصنيف الجملة إيجابية أو سلبية مع درجة",
+      "إجابة محددة مع موضع بدايتها ونهايتها",
+      "ترجمة الجملة إلى لغة أخرى"
+    ],
+    "answer": 0,
+    "explanation": "fill-mask تعيد قائمة بالكلمات المحتملة مرتبة بالاحتمال مع score لكل كلمة (سلايد 52).",
+    "page": 52
+  },
+  {
+    "question": "ما هو نموذج ViT؟",
+    "options": [
+      "نموذج للترجمة بين اللغات",
+      "نموذج لتوليد الصور من النص",
+      "نموذج لتحويل الكلام إلى نص",
+      "Vision Transformer: يجزئ الصورة إلى patches ويعالجها كـ tokens مثل النص"
+    ],
+    "answer": 3,
+    "explanation": "ViT نموذج رائد يجزئ الصورة إلى patches ويعالجها كـ tokens مثل النص (سلايد 29).",
+    "page": 29
+  },
+  {
+    "question": "ماذا يعيد الكود التالي عادةً؟",
+    "code": "clf = pipeline(\"image-classification\", model=\"google/vit-base-patch16-224\")\nresult = clf(\"https://example.com/cat.jpg\")",
+    "options": [
+      "ملفاً صوتياً",
+      "اسم الفئة المتوقعة للصورة (label) مع درجة الثقة",
+      "وصفاً نصياً طويلاً للصورة",
+      "إحداثيات مستطيل حول الجسم فقط"
+    ],
+    "answer": 1,
+    "explanation": "تصنيف الصور يعيد label مثل tabby cat مع score (سلايد 29).",
+    "page": 29
+  },
+  {
+    "question": "ماذا يعيد نموذج الكشف عن الأجسام (object-detection) لكل جسم مكتشف؟",
+    "options": [
+      "الفئة ودرجة الثقة وإحداثيات مستطيل محيط (Bounding Box)",
+      "جملة تصف الصورة فقط",
+      "ملفاً صوتياً",
+      "تصنيفاً واحداً للصورة كلها"
+    ],
+    "answer": 0,
+    "explanation": "النموذج يعيد إحداثيات مستطيل محيط (Bounding Box) حول كل جسم مكتشف مع الفئة والدرجة (سلايد 30).",
+    "page": 30
+  },
+  {
+    "question": "ما مهمة pipeline('image-to-text')؟",
+    "options": [
+      "تصنيف الصورة إلى فئة واحدة",
+      "التعرف على الكلام",
+      "وصف محتوى الصورة نصياً (Image Captioning)",
+      "تحويل النص إلى صورة"
+    ],
+    "answer": 2,
+    "explanation": "image-to-text تولّد وصفاً نصياً للصورة مثل نموذج BLIP (سلايد 31).",
+    "page": 31
+  },
+  {
+    "question": "ما الفرق بين Semantic Segmentation وInstance Segmentation؟",
+    "options": [
+      "Semantic للصوت وInstance للصور",
+      "كلاهما يعطي فئة واحدة للصورة كلها",
+      "Semantic تميّز كل جسم على حدة، وInstance تصنّف كل بكسل لفئة",
+      "Semantic تصنّف كل بكسل لفئة دون تمييز بين الأجسام المتشابهة، وInstance تميّز كل جسم على حدة حتى لو من نفس الفئة"
+    ],
+    "answer": 3,
+    "explanation": "Semantic تصنف كل بكسل لفئة، وInstance تميز كل جسم على حدة (سلايد 32).",
+    "page": 32
+  },
+  {
+    "question": "ما مهمة automatic-speech-recognition (ASR)؟",
+    "options": [
+      "تحويل الكلام المسموع إلى نص (مثل نموذج Whisper)",
+      "وصف الصور نصياً",
+      "تحويل النص إلى كلام",
+      "تصنيف الصور"
+    ],
+    "answer": 0,
+    "explanation": "ASR تحوّل الكلام إلى نص، ونموذج Whisper من OpenAI يدعم أكثر من 99 لغة منها العربية (سلايد 34).",
+    "page": 34
+  },
+  {
+    "question": "ماذا تضيف return_timestamps=True في الكود التالي؟",
+    "code": "asr = pipeline(\"automatic-speech-recognition\", model=\"openai/whisper-large-v3\")\nresult = asr(\"audio.mp3\", return_timestamps=True)",
+    "options": [
+      "توقيت كل كلمة في التسجيل الصوتي",
+      "ترجمة التسجيل إلى الإنجليزية",
+      "تحويل النص إلى كلام",
+      "تقليل حجم الملف الصوتي"
+    ],
+    "answer": 0,
+    "explanation": "إضافة return_timestamps=True تعطيك توقيت كل كلمة في التسجيل الصوتي (سلايد 34).",
+    "page": 34
+  },
+  {
+    "question": "ما الفرق بين مهمتي ASR وTTS؟",
+    "options": [
+      "ASR تحويل الكلام إلى نص، وTTS تحويل النص إلى كلام",
+      "كلاهما تحويل الكلام إلى نص",
+      "ASR للصور وTTS للنصوص",
+      "ASR تحويل النص إلى كلام، وTTS تحويل الكلام إلى نص"
+    ],
+    "answer": 0,
+    "explanation": "ASR (automatic-speech-recognition) من كلام إلى نص، وTTS (text-to-speech) من نص إلى كلام (سلايد 34 و36).",
+    "page": 36
+  },
+  {
+    "question": "أي مما يلي من استخدامات تصنيف الصوت (audio-classification)؟",
+    "options": [
+      "توليد الصور",
+      "ترجمة النصوص",
+      "تلخيص المقالات",
+      "تحليل المشاعر الصوتية وتصنيف الأصوات البيئية وتحديد هوية المتحدث"
+    ],
+    "answer": 3,
+    "explanation": "تصنيف الصوت: تحليل المشاعر الصوتية، وتصنيف الأصوات البيئية، وتحديد هوية المتحدث (سلايد 35).",
+    "page": 35
+  },
+  {
+    "question": "ماذا يعني device=0 في الكود التالي؟",
+    "code": "arabic_clf = pipeline(\n    \"text-classification\",\n    model=\"aubmindlab/bert-base-arabertv02\",\n    tokenizer=\"aubmindlab/bert-base-arabertv02\",\n    device=0\n)",
+    "options": [
+      "استخدام أول GPU لتشغيل النموذج",
+      "إيقاف النموذج",
+      "استخدام المعالج CPU",
+      "تحميل نموذج أصغر"
+    ],
+    "answer": 0,
+    "explanation": "device=0 لاستخدام أول GPU، وdevice=-1 للمعالج CPU (سلايد 38).",
+    "page": 38
+  },
+  {
+    "question": "ماذا يفعل batch_size=8 عند تشغيل Pipeline؟",
+    "options": [
+      "تحديد الحد الأقصى لطول النص",
+      "معالجة 8 مدخلات في وقت واحد مما يسرّع المعالجة",
+      "تحديد 8 لغات للترجمة",
+      "تدريب النموذج 8 مرات"
+    ],
+    "answer": 1,
+    "explanation": "batch_size=8 لمعالجة 8 مدخلات في وقت واحد، فيسرع المعالجة مع النماذج الكبيرة (سلايد 38).",
+    "page": 38
+  },
+  {
+    "question": "ما فائدة Auto classes مثل AutoTokenizer وAutoModelForSequenceClassification؟",
+    "options": [
+      "ترفع النموذج إلى Hub",
+      "تحمّل مجموعات البيانات",
+      "تدرّب النموذج تلقائياً",
+      "تختار الفئة المناسبة تلقائياً بناءً على اسم النموذج دون الحاجة لتحديدها يدوياً"
+    ],
+    "answer": 3,
+    "explanation": "Auto classes تختار الفئة المناسبة تلقائياً بناءً على اسم النموذج (سلايد 39).",
+    "page": 39
+  },
+  {
+    "question": "ما الترتيب الصحيح لخطوات Fine-tuning حسب المحاضرة؟",
+    "options": [
+      "إعداد Trainer ← تحضير البيانات ← تحميل النموذج ← التقييم",
+      "تحميل النموذج ← التدريب ← تحضير البيانات ← إعداد Trainer",
+      "تحضير البيانات ← تحميل النموذج الأساسي ← إعداد Trainer ← التدريب والتقييم",
+      "التدريب ← التقييم ← تحضير البيانات ← تحميل النموذج"
+    ],
+    "answer": 2,
+    "explanation": "الخطوات: 1 تحضير البيانات، 2 تحميل النموذج الأساسي، 3 إعداد Trainer، 4 التدريب والتقييم (سلايد 40).",
+    "page": 40
+  },
+  {
+    "question": "ما وظيفة TrainingArguments في إعداد Trainer؟",
+    "options": [
+      "تحميل النموذج من Hub",
+      "تحويل النص إلى Token Ids",
+      "تحديد إعدادات التدريب مثل عدد الـ Epochs وbatch_size وlearning_rate",
+      "حفظ بطاقة النموذج"
+    ],
+    "answer": 2,
+    "explanation": "TrainingArguments تحدد عدد الـ Epochs وbatch_size وlearning_rate وغيرها (سلايد 40).",
+    "page": 40
+  },
+  {
+    "question": "ما وظيفة الاستدعاءين التاليين؟",
+    "code": "trainer.train()\ntrainer.evaluate()",
+    "options": [
+      "كلاهما لرفع النموذج",
+      "train() لبدء التدريب، وevaluate() لقياس الأداء",
+      "train() لقياس الأداء، وevaluate() لبدء التدريب",
+      "كلاهما لتحميل البيانات"
+    ],
+    "answer": 1,
+    "explanation": "trainer.train() لبدء التدريب، وtrainer.evaluate() لقياس الأداء (سلايد 40).",
+    "page": 40
+  },
+  {
+    "question": "لماذا لا نعتمد على الدقة (Accuracy) وحدها عند تقييم النموذج؟",
+    "options": [
+      "لأن Accuracy غير موجودة في Transformers",
+      "لأن F1 يستخدم لتسريع الأداء",
+      "لأن Accuracy تعمل مع الصور فقط",
+      "نستخدم أيضاً F1 Score وConfusion Matrix لتقييم أشمل"
+    ],
+    "answer": 3,
+    "explanation": "لا تعتمد فقط على الدقة؛ استخدم F1 Score وConfusion Matrix لتقييم أشمل (سلايد 41).",
+    "page": 41
+  },
+  {
+    "question": "ماذا نفعل عند وجود نص أطول من الحد الأقصى لمدخل النموذج؟",
+    "options": [
+      "نغيّر اسم النموذج فقط",
+      "نقسّم النص الطويل إلى أجزاء",
+      "نجعل batch_size صفراً",
+      "نحذف النموذج"
+    ],
+    "answer": 1,
+    "explanation": "كل نموذج له حد أقصى لطول المدخل (عادة 512 token لـ BERT)، لذلك نقسّم النصوص الطويلة (سلايد 41).",
+    "page": 41
+  },
+  {
+    "question": "أي نماذج نستخدمها للتطبيقات متعددة اللغات؟",
+    "options": [
+      "mBERT أو XLM-RoBERTa",
+      "ViT",
+      "نموذج منفصل لكل لغة دائماً",
+      "نموذج إنجليزي فقط"
+    ],
+    "answer": 0,
+    "explanation": "استخدم mBERT أو XLM-RoBERTa للتطبيقات متعددة اللغات بدلاً من نماذج منفصلة (سلايد 41).",
+    "page": 41
+  }
+]
