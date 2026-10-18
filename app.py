@@ -355,8 +355,8 @@ if LOGO_NAME_B64:
 # ---------------- صفحة الاقتراحات ----------------
 if st.session_state.view == "feedback":
     st.button("رجوع", key="back_feedback", on_click=close_feedback)
-    st.markdown('<h2 class="page-title">اقتراحاتك تهمنا</h2>', unsafe_allow_html=True)
-    st.write("اكتب اقتراحك أو ملاحظتك على الموقع، أو أي شي تحب نضيفه، وراح نقرأ كل رسالة.")
+    st.markdown('<h2 class="page-title"> رأيك يهمني </h2>', unsafe_allow_html=True)
+    st.write("أرحب بآرائكم و ملاحظاتكم , فكل فكرة قد تصنع فرقًا")
     st.text_area("اقتراحك", key="fb_text", max_chars=600, height=170,
                  placeholder="اكتب هنا...", label_visibility="collapsed")
     st.button("إرسال", type="primary", key="send_fb", on_click=submit_feedback,
