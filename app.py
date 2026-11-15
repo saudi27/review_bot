@@ -231,10 +231,55 @@ def list_chapters(subject):
     for folder in os.listdir(base):
         info_path = os.path.join(base, folder, "info.json")
         q_path = os.path.join(base, folder, "questions.json")
-        if os.path.isfile(info_path) and os.path.isfile(q_path):
+        if os.path.isfile(info_path) and (os.path.isfile(q_path)
+                                          or find_summary(subject, folder)):
             info = read_json(info_path)
             result.append((info["number"], info["title"], folder))
     return sorted(result)
+
+
+def find_summary(subject, folder):
+    """يرجع مسار ملف الملخص (PDF) داخل مجلد الموضوع، أو None إذا ما فيه."""
+    base = os.path.join(SUBJECTS_DIR, subject, folder)
+    preferred = os.path.join(base, "summary.pdf")
+    if os.path.isfile(preferred):
+        return preferred
+    try:
+        pdfs = sorted(f for f in os.listdir(base) if f.lower().endswith(".pdf"))
+    except OSError:
+        return None
+    return os.path.join(base, pdfs[0]) if pdfs else None
+
+
+@st.cache_data(show_spinner="جاري تجهيز الملخص...")
+def render_pdf_pages(path, zoom=1.6):
+    """يحوّل صفحات الـ PDF إلى صور للمعاينة داخل الموقع (يحتاج PyMuPDF)."""
+    try:
+        import fitz  # PyMuPDF
+    except Exception:
+        return None
+    pages = []
+    try:
+        with fitz.open(path) as doc:
+            for page in doc:
+                pix = page.get_pixmap(matrix=fitz.Matrix(zoom, zoom))
+                pages.append(pix.tobytes("png"))
+    except Exception:
+        return None
+    return pages
+
+
+@st.cache_data
+def read_bytes(path):
+    with open(path, "rb") as f:
+        return f.read()
+
+
+def show_image(img):
+    try:
+        st.image(img, use_container_width=True)
+    except TypeError:
+        st.image(img, use_column_width=True)
 
 
 def start_round():
@@ -257,11 +302,25 @@ def open_subject(folder, name):
 
 
 def open_chapter(subject, folder, number, title):
-    path = os.path.join(SUBJECTS_DIR, subject, folder, "questions.json")
-    st.session_state.all_qs = read_json(path)
     st.session_state.chapter = folder
     st.session_state.chapter_title = f"الموضوع {number}: {title}"
+    st.session_state.mode = None
+
+
+def start_review():
+    path = os.path.join(SUBJECTS_DIR, st.session_state.subject,
+                        st.session_state.chapter, "questions.json")
+    st.session_state.all_qs = read_json(path)
+    st.session_state.mode = "review"
     start_round()
+
+
+def open_summary():
+    st.session_state.mode = "summary"
+
+
+def go_modes():
+    st.session_state.mode = None
 
 
 def parse_form_link(link):
@@ -311,10 +370,12 @@ def close_feedback():
 def go_home():
     st.session_state.subject = None
     st.session_state.chapter = None
+    st.session_state.mode = None
 
 
 def go_chapters():
     st.session_state.chapter = None
+    st.session_state.mode = None
 
 
 if "started" not in st.session_state:
@@ -323,6 +384,8 @@ if "subject" not in st.session_state:
     st.session_state.subject = None
 if "chapter" not in st.session_state:
     st.session_state.chapter = None
+if "mode" not in st.session_state:
+    st.session_state.mode = None
 if "view" not in st.session_state:
     st.session_state.view = None
 if "fb_count" not in st.session_state:
@@ -393,9 +456,52 @@ elif st.session_state.chapter is None:
                   args=(st.session_state.subject, folder, number, title),
                   use_container_width=True)
 
+# ---------------- اختيار: مراجعة أو ملخصات ----------------
+elif st.session_state.mode is None:
+    st.button("رجوع للمواضيع", key="back_chapters", on_click=go_chapters)
+    st.caption(st.session_state.subject_name)
+    st.markdown(f'<h2 class="page-title">{st.session_state.chapter_title}</h2>',
+                unsafe_allow_html=True)
+    q_file = os.path.join(SUBJECTS_DIR, st.session_state.subject,
+                          st.session_state.chapter, "questions.json")
+    has_questions = os.path.isfile(q_file)
+    has_summary = find_summary(st.session_state.subject, st.session_state.chapter) is not None
+    col_review, col_summary = st.columns(2)
+    with col_review:
+        st.button("📝 مراجعة", key="mode_review", on_click=start_review,
+                  use_container_width=True, disabled=not has_questions)
+    with col_summary:
+        st.button("📄 ملخصات", key="mode_summary", on_click=open_summary,
+                  use_container_width=True, disabled=not has_summary)
+    if not has_questions:
+        st.caption("أسئلة المراجعة غير متوفرة لهذا الموضوع حالياً")
+    if not has_summary:
+        st.caption("الملخص غير متوفر لهذا الموضوع حالياً")
+
+# ---------------- الملخصات ----------------
+elif st.session_state.mode == "summary":
+    st.button("رجوع", key="back_from_summary", on_click=go_modes)
+    st.caption(f"{st.session_state.subject_name} | {st.session_state.chapter_title}")
+    st.markdown('<h2 class="page-title">الملخص</h2>', unsafe_allow_html=True)
+    summary_path = find_summary(st.session_state.subject, st.session_state.chapter)
+    if summary_path is None:
+        st.warning("الملخص غير متوفر لهذا الموضوع حالياً")
+    else:
+        st.download_button("⬇️ فتح / تحميل الملخص (PDF)",
+                           data=read_bytes(summary_path),
+                           file_name=os.path.basename(summary_path),
+                           mime="application/pdf", type="primary",
+                           use_container_width=True)
+        pages = render_pdf_pages(summary_path)
+        if pages:
+            for page_img in pages:
+                show_image(page_img)
+        else:
+            st.info("المعاينة غير متاحة الآن، حمّل الملف من الزر أعلاه")
+
 # ---------------- الأسئلة ----------------
 else:
-    st.button("رجوع للمواضيع", key="back_chapters", on_click=go_chapters)
+    st.button("رجوع", key="back_mode", on_click=go_modes)
     st.caption(f"{st.session_state.subject_name} | {st.session_state.chapter_title}")
 
     qs = st.session_state.qs
