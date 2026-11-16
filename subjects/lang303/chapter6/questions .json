@@ -1043,20 +1043,9 @@
     "explanation": "# 4. بناء السلسلة وتشغيلها: report_chain = prompt | llm | StrOutputParser() (سلايد 24).",
     "page": 24
   },
+  
   {
-    "question": "ماذا يفعل السطر: final_report = report_chain.invoke({\"reviews\": all_reviews_text})؟",
-    "options": [
-      "يحمّل ملف الـ CSV من الجهاز",
-      "ينشئ النموذج اللغوي من جديد",
-      "يبني قالب الأمر من النص",
-      "يشغل السلسلة بنص التقييمات"
-    ],
-    "answer": 3,
-    "explanation": "final_report = report_chain.invoke({\"reviews\": all_reviews_text}) (سلايد 24).",
-    "page": 24
-  },
-  {
-    "question": "كيف عرّفنا مفهوم Document في الخلاصة؟",
+    "question": "Document مفهوم",
     "options": [
       "حاوية تضم النص ومصدره",
       "محمل يقرأ ملفات PDF",
@@ -1068,7 +1057,7 @@
     "page": 25
   },
   {
-    "question": "ما وصف Document Loaders في الخلاصة؟",
+    "question": "ما وصف Document Loaders ",
     "options": [
       "مخازن آمنة تحفظ النماذج اللغوية الكبيرة",
       "مفاتيح تشفر البيانات الحساسة داخل المؤسسة",
@@ -1101,18 +1090,6 @@
     ],
     "answer": 2,
     "explanation": "النموذج اللغوي لا يستطيع قراءة كل هذا دفعة واحدة بسبب قيود حجم الاستيعاب (Context Window) (سلايد 25).",
-    "page": 25
-  },
-  {
-    "question": "ماذا سنتعلم في الدرس القادم (الموضوع السابع)؟",
-    "options": [
-      "Document Loaders",
-      "Text Splitters",
-      "Output Parsers",
-      "Chat Models"
-    ],
-    "answer": 1,
-    "explanation": "في الدرس القادم (Text Splitters) سنتعلم كيف نقوم \"بتقطيع\" هذه المستندات الضخمة بذكاء إلى أجزاء صغيرة يسهل هضمها والبحث فيها (سلايد 25).",
     "page": 25
   }
 ]
