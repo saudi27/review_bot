@@ -264,30 +264,6 @@
     "page": 8
   },
   {
-    "question": "ما فائدة الأمر: !pip install -qU langchain langchain-community langchain-openai beautifulsoup4 pypdf fpdf؟",
-    "options": [
-      "تحميل نموذج GPT على الجهاز المحلي",
-      "حذف المكتبات القديمة من بيئة Colab",
-      "تشغيل الكود البرمجي داخل ملف الإكسل",
-      "تثبيت LangChain ومكتبات الويب وPDF"
-    ],
-    "answer": 3,
-    "explanation": "تثبيت LangChain ومكتبات قراءة الويب والـ PDF (سلايد 9).",
-    "page": 9
-  },
-  {
-    "question": "ماذا يفعل السطر: os.environ[\"OPENAI_API_KEY\"] = getpass(...)؟",
-    "options": [
-      "ينشئ ملف CSV",
-      "يهيئ مفتاح OpenAI",
-      "يحمّل ملف PDF",
-      "يحذف المفتاح القديم"
-    ],
-    "answer": 1,
-    "explanation": "# تهيئة مفتاح OpenAI: os.environ[\"OPENAI_API_KEY\"] = getpass(\"أدخل مفتاح OpenAI API: \") (سلايد 9).",
-    "page": 9
-  },
-  {
     "question": "أي المكتبات المثبتة تُستخدم للتعامل مع الويب؟",
     "options": [
       "fpdf",
@@ -309,18 +285,6 @@
     ],
     "answer": 3,
     "explanation": "مولد قواعد البيانات: لجعل التطبيقات العملية واقعية، نشغّل الكود مرة واحدة لإنشاء الملفات (TXT, CSV, PDF) تلقائياً داخل Google Colab لنستخدمها في المعامل (سلايد 10).",
-    "page": 10
-  },
-  {
-    "question": "ما اسم الملف النصي الذي ينشئه الكود؟",
-    "options": [
-      "sales_data.csv",
-      "tech_manual.pdf",
-      "company_policy.txt",
-      "customer_reviews.csv"
-    ],
-    "answer": 2,
-    "explanation": "with open(\"company_policy.txt\", \"w\", encoding=\"utf-8\") (سلايد 10).",
     "page": 10
   },
   {
@@ -348,42 +312,6 @@
     "page": 10
   },
   {
-    "question": "كم تبلغ قيمة Revenue لمنتج Cyber Security في الكود؟",
-    "options": [
-      "50000",
-      "30000",
-      "65000",
-      "75000"
-    ],
-    "answer": 3,
-    "explanation": "writer.writerow([\"3\", \"Cyber Security\", \"75000\", \"Dammam\"]) (سلايد 10).",
-    "page": 10
-  },
-  {
-    "question": "في أي مدينة يُباع منتج Cloud Storage حسب ملف المبيعات؟",
-    "options": [
-      "Riyadh",
-      "Jeddah",
-      "Dammam",
-      "Makkah"
-    ],
-    "answer": 1,
-    "explanation": "writer.writerow([\"2\", \"Cloud Storage\", \"30000\", \"Jeddah\"]) (سلايد 10).",
-    "page": 10
-  },
-  {
-    "question": "كم يوماً يسمح للموظفين بالعمل عن بعد في الأسبوع حسب سياسة الشركة المكتوبة؟",
-    "options": [
-      "يومان",
-      "ثلاثة أيام",
-      "خمسة أيام",
-      "يوم واحد"
-    ],
-    "answer": 0,
-    "explanation": "يُسمح للموظفين بالعمل عن بعد يومين في الأسبوع (سلايد 10).",
-    "page": 10
-  },
-  {
     "question": "أي أداة يجب استخدامها للتواصل الرسمي حسب سياسة الشركة؟",
     "options": [
       "WhatsApp",
@@ -407,18 +335,7 @@
     "explanation": "from fpdf import FPDF؛ pdf = FPDF() ... pdf.output(\"tech_manual.pdf\") (سلايد 10).",
     "page": 10
   },
-  {
-    "question": "ما اسم ملف الـ PDF الذي ينشئه الكود؟",
-    "options": [
-      "company_policy.txt",
-      "tech_manual.pdf",
-      "sales_data.csv",
-      "customer_reviews.csv"
-    ],
-    "answer": 1,
-    "explanation": "pdf.output(\"tech_manual.pdf\") (سلايد 10).",
-    "page": 10
-  },
+
   {
     "question": "ماذا يفعل السطر: from langchain_community.document_loaders import TextLoader؟",
     "options": [
@@ -431,18 +348,7 @@
     "explanation": "from langchain_community.document_loaders import TextLoader: استيراد محمل الملفات النصية (سلايد 11).",
     "page": 11
   },
-  {
-    "question": "ماذا يفعل السطر: loader = TextLoader(\"company_policy.txt\", encoding=\"utf-8\")؟",
-    "options": [
-      "يقرأ الملف ويرجع قائمة المستندات",
-      "يطبع عدد المستندات المستخرجة",
-      "يهيئ المحمل بمسار الملف والترميز",
-      "يحذف الملف بعد قراءته مباشرة"
-    ],
-    "answer": 2,
-    "explanation": "# 1. تهيئة المحمل مع تحديد مسار الملف والترميز (سلايد 11).",
-    "page": 11
-  },
+
   {
     "question": "ما الذي يحدده الوسيط encoding=\"utf-8\" في TextLoader؟",
     "options": [
@@ -467,18 +373,7 @@
     "explanation": "# 2. تنفيذ عملية التحميل: documents = loader.load() (سلايد 11).",
     "page": 11
   },
-  {
-    "question": "ماذا يطبع الأمر: print(\"عدد المستندات المستخرجة:\", len(documents))؟",
-    "options": [
-      "عدد المستندات المستخرجة",
-      "عدد أسطر الملف",
-      "عدد كلمات الملف",
-      "عدد الملفات في المجلد"
-    ],
-    "answer": 0,
-    "explanation": "# 3. استعراض النتائج: print(\"عدد المستندات المستخرجة:\", len(documents)) (سلايد 11).",
-    "page": 11
-  },
+
   {
     "question": "ماذا يطبع الأمر: print(documents[0].page_content)؟",
     "options": [
@@ -612,18 +507,6 @@
     "page": 14
   },
   {
-    "question": "ما هدف المعمل الثالث (WebBaseLoader)؟",
-    "options": [
-      "قراءة ملف PDF من الجهاز المحلي",
-      "كشط وقراءة مقال من الإنترنت",
-      "تحميل مجلد كامل من الملفات",
-      "قراءة بيانات جدول في ملف إكسل"
-    ],
-    "answer": 1,
-    "explanation": "المعمل الثالث: استخراج البيانات من الويب (WebBaseLoader). الهدف: كشط (Scraping) وقراءة محتوى مقال من الإنترنت لاستخدامه كسياق للنموذج اللغوي (سلايد 15).",
-    "page": 15
-  },
-  {
     "question": "ماذا نعطي WebBaseLoader عند تهيئته؟",
     "options": [
       "رابط المقال (URL)",
@@ -659,18 +542,7 @@
     "explanation": "print(\"مصدر الرابط:\", web_docs[0].metadata['source']) (سلايد 15).",
     "page": 15
   },
-  {
-    "question": "ما القيمة الافتراضية للعنوان في: metadata.get('title', 'No Title')؟",
-    "options": [
-      "Untitled",
-      "No Title",
-      "None",
-      "Unknown"
-    ],
-    "answer": 1,
-    "explanation": "web_docs[0].metadata.get('title', 'No Title'): عنوان الصفحة، وإذا لم يوجد عنوان تُطبع القيمة 'No Title' (سلايد 15).",
-    "page": 15
-  },
+
   {
     "question": "أي مكتبة يستخدمها WebBaseLoader في الخلفية؟",
     "options": [
@@ -851,32 +723,9 @@
     "explanation": "print(f\"المسار: {doc.metadata['source']}\") (سلايد 19).",
     "page": 19
   },
+
   {
-    "question": "كم مدة التمرين التطبيقي للطلاب؟",
-    "options": [
-      "30 دقيقة",
-      "60 دقيقة",
-      "45 دقيقة",
-      "90 دقيقة"
-    ],
-    "answer": 1,
-    "explanation": "تمرين تطبيقي للطلاب (المدة: 60 دقيقة) (سلايد 20).",
-    "page": 20
-  },
-  {
-    "question": "ماذا يحتوي ملف CSV الذي أرسله قسم خدمة العملاء في سيناريو التمرين؟",
-    "options": [
-      "بيانات رواتب الموظفين الجدد",
-      "أسعار منتجات الفروع الجديدة",
-      "تعليقات (تقييمات) العملاء الجدد",
-      "مبيعات المتجر الإلكتروني الجديد"
-    ],
-    "answer": 2,
-    "explanation": "السيناريو: قسم خدمة العملاء أرسل لك ملف CSV يحتوي على تعليقات (تقييمات) العملاء الجدد (سلايد 20).",
-    "page": 20
-  },
-  {
-    "question": "أي محمل يُستخدم لقراءة ملف التقييمات في التمرين؟",
+    "question": "أي محمل يُستخدم لقراءة ملف التقييمات ؟",
     "options": [
       "TextLoader",
       "PyPDFLoader",
@@ -911,42 +760,8 @@
     "explanation": "writer.writerow([\"Date\", \"Customer_Rating\", \"Review_Text\"]) (سلايد 21).",
     "page": 21
   },
-  {
-    "question": "ما تقييم أول مراجعة في الملف (خدمة سريعة جداً وتطبيق سهل الاستخدام)؟",
-    "options": [
-      "5/5",
-      "4/5",
-      "3/5",
-      "2/5"
-    ],
-    "answer": 0,
-    "explanation": "writer.writerow([\"2026-04-10\", \"5/5\", \"خدمة سريعة جداً وتطبيق سهل الاستخدام، أنا معجب بالسرعة.\"]) (سلايد 21).",
-    "page": 21
-  },
-  {
-    "question": "ما اسم الملف الناتج من كود مولد بيانات التحدي؟",
-    "options": [
-      "sales_data.csv",
-      "company_policy.txt",
-      "customer_reviews.csv",
-      "tech_manual.pdf"
-    ],
-    "answer": 2,
-    "explanation": "print(\"تم إنشاء ملف customer_reviews.csv بنجاح، وهو جاهز لاستخدامه في التحدي!\") (سلايد 22).",
-    "page": 22
-  },
-  {
-    "question": "ماذا يفعل السطر: all_reviews_text = \"\\n\".join([doc.page_content for doc in reviews_docs])؟",
-    "options": [
-      "يحذف التقييمات المكررة من الملف",
-      "يجمع محتوى التقييمات في نص واحد",
-      "يرتب التقييمات أبجدياً حسب التاريخ",
-      "يترجم التقييمات المكتوبة إلى الإنجليزية"
-    ],
-    "answer": 1,
-    "explanation": "# 2. تجميع محتوى التقييمات في نص واحد لنرسله للنموذج (سلايد 23).",
-    "page": 23
-  },
+  
+
   {
     "question": "ماذا يمثل الرمز \"\\n\" في دالة join داخل الكود؟",
     "options": [
@@ -981,18 +796,6 @@
     ],
     "answer": 3,
     "explanation": "template: \"أنت محلل جودة في شركة تقنية. اقرأ تقييمات العملاء التالية واكتب تقريراً تنفيذياً باللغة العربية\" (سلايد 24).",
-    "page": 24
-  },
-  {
-    "question": "ما العناصر الثلاثة المطلوبة في التقرير التنفيذي داخل القالب؟",
-    "options": [
-      "ملخص تنفيذي وجدول للأرقام ورسم بياني للنتائج",
-      "مقدمة للتقرير وخاتمة قصيرة وقائمة للمراجع",
-      "أبرز الإيجابيات وأبرز السلبيات وتوصية للإدارة",
-      "تاريخ التقرير واسم المحلل وتوقيع المدير"
-    ],
-    "answer": 2,
-    "explanation": "1. أبرز الإيجابيات. 2. أبرز السلبيات. 3. توصية واحدة للإدارة (سلايد 24).",
     "page": 24
   },
   {
@@ -1068,18 +871,7 @@
     "explanation": "Document Loaders: هي بوابات العبور التي تنقل البيانات من العالم الحقيقي إلى عقل الذكاء الاصطناعي (سلايد 25).",
     "page": 25
   },
-  {
-    "question": "ما أنواع الملفات التي طبقنا عليها المحملات عملياً؟",
-    "options": [
-      "الصور والفيديو والملفات الصوتية",
-      "النصوص والإكسيل CSV والويب وPDF",
-      "العروض التقديمية والخرائط والرسوم",
-      "الألعاب والبرامج والتطبيقات الجاهزة"
-    ],
-    "answer": 1,
-    "explanation": "طبقنا عملياً على أهم أنواع الملفات التي تطلبها بيئة العمل: النصوص، الإكسيل/CSV، الويب، والـ PDF (سلايد 25).",
-    "page": 25
-  },
+
   {
     "question": "لماذا لا يستطيع النموذج قراءة كتاب من 1000 صفحة دفعة واحدة؟",
     "options": [
